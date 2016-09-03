@@ -52,8 +52,8 @@ PHPはサーバサイド言語ですので、XAMPPなどのローカル開発環
 * `C:\xampp\htdocs`の中にこのリポジトリ`hamazon`を丸ごと入れてください。
 * `C:\xampp\apache\conf\httpd.conf`をテキストエディターで開き、240行目当たりの部分を以下のようにに書き換えます。
 ```
-DocumentRoot "C:\xampp\hamazon"
-<Directory "C:\xampp\hamazon">
+DocumentRoot "C:\xampp\htdocs\hamazon"
+<Directory "C:\xampp\htdocs\hamazon">
 ```
 * XAMPPを起動し、ApacheとMySQLのStartボタンを押してください。緑色になればokです。
 * これで、`http://localhost/`にアクセスすると「データベース接続エラー」と表示されるはずです。
