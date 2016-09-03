@@ -8,8 +8,8 @@ $mysqli->set_charset("utf8");
 if ($mysqli->connect_error) die("データベースの接続エラー");
 
 //キーワードを含むレコードを引き抜く
-$word = $mysqli->real_escape_string($_GET['word']); //SQLI対策
-$sql = "SELECT * FROM items WHERE name COLLATE utf8_unicode_ci LIKE '%{$word}%'";
+$esc_word = $mysqli->real_escape_string($_GET['word']); //SQLI対策
+$sql = "SELECT * FROM items WHERE name COLLATE utf8_unicode_ci LIKE '%{$esc_word}%'";
 $res = $mysqli->query($sql);
 
 //空白を含む場合は注意
