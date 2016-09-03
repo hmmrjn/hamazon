@@ -1,0 +1,24 @@
+.orders td{
+	text-align: right;
+}
+.orders tr:nth-child(2n+1) {  /* 奇数行 */
+	background-color: whitesmoke;
+}
+table {
+	border-collapse: collapse;
+	background: rgba(0, 0, 0, 0.02);;
+	margin: 10px auto;
+	width: calc(90% - 20px);
+	border-radius: 8px;
+
+}
+tr {
+	border-bottom: 1px solid gainsboro;
+	padding: 0 100px;
+}
+tr:last-child {
+	border-bottom: none;
+}
+td {
+	padding: 10px 20px;
+}

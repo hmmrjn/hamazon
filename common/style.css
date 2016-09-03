@@ -1,0 +1,425 @@
+@charset "utf-8";
+/*@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);*/
+
+/*
+888    888
+888    888
+888    888
+8888888888  8888b.  88888b.d88b.   8888b.  88888888  .d88b.  88888b.
+888    888     "88b 888 "888 "88b     "88b    d88P  d88""88b 888 "88b
+888    888 .d888888 888  888  888 .d888888   d88P   888  888 888  888
+888    888 888  888 888  888  888 888  888  d88P    Y88..88P 888  888
+888    888 "Y888888 888  888  888 "Y888888 88888888  "Y88P"  888  888 Ver3.0.15.08.10
+
+(c) Copyright 2015 Hamazon co. Ltd. Some rights reserved.
+
+*/
+
+
+/*===================================================
+基礎
+===================================================*/
+
+body {
+	background-color: lightgray;
+	/*background-image: -webkit-linear-gradient(-45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+	background-image: linear-gradient(-45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+	background-size: 8px 8px;*/
+	color: #333333;
+	font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', 'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+#container {
+	width: 980px;
+	margin-left: auto;
+	margin-right: auto;
+}
+p {
+	font-size: 14px;
+	line-height: 1.6;
+}
+em {
+	font-style: normal;
+}
+em.small {
+	font-size: 14px;
+}
+em.big {
+	font-size: 18px;
+}
+em.gray {
+	color: gray;
+}
+em.green {
+	color: green;
+}
+em.darkred {
+	color: darkred;
+}
+em.dodgeblue {
+	color: dodgerblue;
+}
+
+/*===================================================
+ヘッダー
+===================================================*/
+
+header {
+	background: linear-gradient(white 90%, whitesmoke);
+	padding: 5px 15px;
+	border-top: solid 3px #66CC00;
+	height: 60px;
+	box-shadow: 0 0 10px gray;
+}
+.logo {
+	float: left;
+	padding: 5px 22px;
+}
+.searchBox {
+	float: left;
+	padding-left: 38px;
+	padding-top: 4px;
+}
+.searchBox input[type="text"] {
+	padding: 5px 10px;
+	width: 200px;
+	background: whitesmoke;
+}
+nav {
+	float: right;
+	color: #808080;
+	font-size: 14px;
+}
+nav li {
+	float: left;
+	list-style: none;
+	padding: 5px 20px;
+	border-left: 1px solid #808080;
+}
+nav li:first-child {
+	border-left: none;
+}
+nav a {
+	text-decoration: none;
+	color: gray;
+}
+nav .selected div {
+	color: darkorange;
+	background: whitesmoke;
+	box-shadow: 0 0 10px lightgray inset;
+	border-radius: 5px;
+	padding: 5px 10px;
+	margin-top: -5px;
+}
+nav .selected a {
+	color: darkorange;
+}
+
+/*===================================================
+メイン
+===================================================*/
+
+main {
+	background-color: white;
+	margin: 25px 0;
+	padding: 25px;
+	box-shadow: 0 0 10px gray;
+}
+section {
+	overflow: hidden;
+	clear: both;
+	margin-top: 25px;
+}
+
+/* バーナー */
+
+.banner {
+	width: 930px;
+	height: 200px;
+	background-color: blue;
+	position: relative;
+}
+.banner img {
+	width: 930px;
+	/* rect(右上Y, 右上X, 左下Y, 左下X) */
+	clip: rect( 0px, 930px, 200px, 0px);
+	position: absolute;
+	left: -0px;
+	top: -0px;
+	opacity: 0.8;
+}
+.banner #title {
+	font-family: 'Noto Sans Japanese', sans-serif;
+	color: white;
+	font-size: 30px;
+	font-weight: normal;
+	text-shadow: 1px 1px 3px darkblue;
+	position: absolute;
+	left: 20px;
+	bottom: -25px;
+}
+
+/* 大きいバーナー */
+
+.large-banner {
+	width: 930px;
+	height: 365px;
+	background-color: dodgerblue;
+	position: relative;
+}
+.large-banner img {
+	width: 930px;
+	/* rect(右上Y, 右上X, 左下Y, 左下X) */
+	clip: rect( 0px, 930px, 365px, 0px);
+	position: absolute;
+	left: -0px;
+	top: -0px;
+	opacity: 0.6;
+}
+#large-banner-content {
+	position: absolute;
+	left: 0px;
+	bottom: 30px;
+	width: 930px;
+	text-align: center;
+}
+.large-banner p {
+	color: white;
+	font-size: 24px;
+	font-weight: normal;
+}
+.large-banner a {
+	opacity: 1;
+	background: chocolate;
+}
+.large-banner a:hover {
+	background: darkorange;
+}
+
+/* 通知ボックス */
+
+.notifybox {
+	background-color: whitesmoke;
+	border: 1px solid gainsboro;
+	border-radius: 10px;
+	display: inline-block;
+	padding: 5px 10px;
+}
+
+/* 見出し */
+
+h1 {
+	font-size: 25px;
+	color: darkorange;
+}
+h2 {
+	font-size: 18px;
+	color: darkorange;
+	border-bottom: solid 1px;
+}
+
+/* ボックス */
+
+.box {
+	border: 1px solid gainsboro;
+	border-radius: 10px;
+	padding: 5px 10px;
+}
+.rightbox {
+	width: 190px;
+	float: right;
+	display: inline-block;
+	background-color: whitesmoke;
+}
+.leftbox {
+	width: 680px;
+}
+.graybox {
+	background-color: whitesmoke;
+}
+
+/*アイテム*/
+
+.items_container{
+width :100%;
+}
+.item{
+width:33%;
+height:220px;
+float:left;
+padding-bottom: 30px;
+}
+.item img{
+	border-radius: 10px;
+	opacity: 1;
+}
+.item img:hover {
+	border-radius: 10px;
+	opacity: 0.8;
+}
+
+/* リストと表 */
+
+ul {
+	list-style-type: circle;
+}
+.standard-table {
+	width: 100%;
+	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
+}
+.standard-table th,
+.standard-table td {
+	border: 1px solid #CCCCCC;
+	padding: 5px 10px;
+}
+.standard-table th {
+	background-color: #EEEEEE;
+}
+table.t1 th {
+	text-align: left;
+	border-bottom: 1px solid #CCCCCC;
+}
+table.t1 td {
+	vertical-align: top;
+	padding: 10px 10px;
+}
+table.t2 {
+	width: 180px;
+}
+table.t2 td {
+	font-size: 14px;
+	text-align: right;
+}
+
+/* サムネイル */
+
+figure {
+	margin: 0px;
+}
+figcaption {
+	font-size: 10px;
+	margin-top: -8px;
+}
+
+/* ボタン */
+
+.cntbtn {
+	padding: 4px 10px;
+	margin: 10px;
+	color: white;
+	text-decoration: none;
+	display: inline-block;
+	opacity: 0.8;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.cntbtn:hover {
+	opacity: 1;
+}
+.active {
+	background-color: darkorange;
+}
+.unactive {
+	background-color: gray;
+}
+.continue-to-cashier {
+	width: 140px;
+	text-align: center;
+}
+input[type="submit"] {
+	padding: 4px 10px;
+	margin: 10px;
+	color: white;
+	background-color: darkorange;
+	text-decoration: none;
+	display: inline-block;
+	opacity: 0.8;
+	border-radius: 4px;
+	border-style: none;
+	border-style: none;
+}
+input[type="submit"]:hover {
+	opacity: 1;
+}
+
+#all-products-btn-wrapper {
+	text-align: center;
+}
+#all-products-btn {
+	margin-top: 40px;
+	padding: 10px 50px;
+}
+#all-products-btn i {
+	padding-right: 20px;
+}
+
+/* 入力欄 */
+
+input[type="text"], input[type="password"] {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555;
+	padding-left: 10px;
+}
+
+textarea {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555;
+	padding-left: 10px;
+}
+
+/* 選択欄 */
+
+select {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555;
+}
+
+/*===================================================
+フッター
+===================================================*/
+
+footer {
+	border-top: solid 1px #CCCCCC;
+}
+
+/* SNSボタン */
+
+.btn {
+	padding: 8px 24px;
+	color: white;
+	text-decoration: none;
+	background-color: #55acee;
+	display: inline-block;
+	opacity: 0.8;
+	border-radius: 4px;
+}
+.btn:hover {
+	opacity: 1;
+}
+
+/* カウンターと法的表明（） */
+
+#counter {
+	float: right;
+}
+#legal {
+	color: gray;
+	font-size: 12px;
+}
+#legal a {
+	color: deepskyblue;
+}
+.float {
+	position: absolute;
+	left: 20px;
+	bottom: 50px;
+}
