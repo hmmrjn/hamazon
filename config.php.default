@@ -1,0 +1,29 @@
+<?php
+//データベースの設定
+
+//MySQLのホスト名を入れてください。
+$db_host = "localhost";
+//MySQLのユーザー名を入れてください。
+$db_user = "root";
+//MySQLのパスワードを入れてください。
+$db_pass = "";
+//MySQLのデータベース名を入れてください。
+$db_name = "hamazon";
+
+
+//秘密キーの設定
+
+//適当な秘密キーを入れてください。暗号化に使います。
+$magic_code = "";
+
+
+//mail
+$contact_mail = "contact@hamazon.jp";
+$support_mail = "support@hamazon.jp";
+
+
+//web
+$site_name = "Hamazon";
+$site_domain = "hamazon.jp";
+$site_url = "http://hamazon.jp";
+?>
