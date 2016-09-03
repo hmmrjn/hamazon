@@ -1,9 +1,11 @@
+-- このファイルでテーブルをデータベスインポートしてください。
+
 -- phpMyAdmin SQL Dump
 -- version 4.3.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016 年 9 朁E03 日 23:08
+-- Generation Time: 2016 年 9 月 04 日 01:16
 -- サーバのバージョン： 5.6.24
 -- PHP Version: 5.6.8
 
@@ -52,18 +54,15 @@ CREATE TABLE IF NOT EXISTS `items` (
   `stock` int(10) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- テーブルの構造 `orders`
+-- テーブルのデータのダンプ `items`
 --
 
-CREATE TABLE IF NOT EXISTS `orders` (
-  `order_id` int(6) NOT NULL,
-  `user_id` varchar(50) NOT NULL,
-  `date` date NOT NULL,
-  `total_price` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+INSERT INTO `items` (`id`, `name`, `kana`, `deleted`, `price`, `category`, `date`, `details`, `stock`) VALUES
+(1, '東京電機大学千住キャンパス1号館', 'とうきょうでんきだいがくせんじゅきゃんぱす１ごうかん', 0, 500000000, '1', '2015-06-25', '最先端設備を備え、最新技術を駆使して省CO2エコキャンパスを実現するとともに、免震、制震、非常用設備など防災機能を充実させたキャンパスです。キャンパス内の図書館やカフェ、3つのプラザなど地域の人々にも開放され、人と緑にあふれた優しいまちづくりにも積極的に参加していきます。勉強の合間の気分転換にピッタリなルーフガーデン、そしてカフェラウンジ、食堂は、どの建物からでも行きやすい場所に配置。学生の過ごしやすさを第一に考えたキャンパスです。（製造者より）', 1),
+(2, '東京電機大学千住キャンパス2号館', 'とうきょうでんきだいがくせんじゅきゃんぱす2ごうかん', 0, 400000000, '1', '2016-03-28', '2号館です。詳細は知りません。', 10),
+(3, '東京電機大学千住キャンパス3号館', 'とうきょうでんきだいがくせんじゅきゃんぱす3ごうかん', 0, 400000000, '1', '2016-03-29', '2号館です。詳細は知りません。', 10),
+(4, 'タカセ丸　蓮タロウ®', '', 0, 2980, '', '2016-07-31', '', 100),
 
 -- --------------------------------------------------------
 
@@ -80,6 +79,17 @@ CREATE TABLE IF NOT EXISTS `order_details` (
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
+
+--
+-- テーブルの構造 `orders`
+--
+
+CREATE TABLE IF NOT EXISTS `orders` (
+  `order_id` int(6) NOT NULL,
+  `user_id` varchar(50) NOT NULL,
+  `date` date NOT NULL,
+  `total_price` int(10) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- テーブルの構造 `reviews`
@@ -125,16 +135,16 @@ ALTER TABLE `items`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`);
-
---
 -- Indexes for table `order_details`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`detail_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `reviews`
@@ -158,15 +168,15 @@ ALTER TABLE `users`
 ALTER TABLE `items`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `order_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
---
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
   MODIFY `detail_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `reviews`
 --
