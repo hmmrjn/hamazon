@@ -46,25 +46,22 @@ PHPはサーバサイド言語ですので、XAMPPなどのローカル開発環
 * `/config.php.default` の中にホスト名、ユーザ名、パスワード、データベース名を入力し、`config.php` に改名します。
 * サーバのルートディレクトリをhamazonに設定してください。でないと相対パスが動きません。
 
-### 初心者向け
-* XAMPPをインストールしましょう。これがないとPHPは動かせません。場所はCドライブ直下`C:\`にしてください。
-* インストールと設定の仕方：http://qiita.com/mpyw/items/4508dc677b11e487effc
-* `C:\xampp\htdocs`の中にこのリポジトリ`hamazon`を丸ごと入れてください。
+### 初心者向け (Windows)
+* [XAMPP](https://www.apachefriends.org/jp/index.html)をインストールしましょう。これがないとPHPは動かせません。Windows場所はCドライブ直下`C:\`にしてください。
 * `C:\xampp\apache\conf\httpd.conf`をテキストエディターで開き、240行目当たりの部分を以下のようにに書き換えます。
 ```
-DocumentRoot "C:\xampp\htdocs\hamazon"
-<Directory "C:\xampp\htdocs\hamazon">
+DocumentRoot "C:\Username\Documents\GitHub\hamazon"
+<Directory "C:\Username\Documents\GitHub\hamazon">
 ```
 * XAMPPを起動し、ApacheとMySQLのStartボタンを押してください。緑色になればokです。
-* これで、`http://localhost/`にアクセスすると「データベース接続エラー」と表示されるはずです。
-* `http://localhost/phpmyadmin/` にアクセスしてログインしてください。ユーザを設定していない場合はたぶんユーザ名`root`パスワードなしでログインできます。
-* 「データベース」 > 「データベースを作成する」から、データベース名:`hamazon`と入力して作成します。
-* 「インポート」 > 「インポートするファイル」から`C:\xampp\htdocs\hamazon`の中に入っている`create_database.sql`を選択して、「実行」を押します。
-* `C:\xampp\htdocs\hamazon`の中の`config.php.default`をテキストエディターで開き、以下のように自分のphpmyadminのパスワードを入力し、ファイル名を`config.php` に改名します。
+* これで、`http://localhost/`にアクセスすると「データベース接続エラー」と表示されるはずです。まだデータベースを用意していないからです。
+* `http://localhost/phpmyadmin/` にアクセスし、「データベース」タブから、名前が`hamazon`のデータベースを作成します。
+* 「インポート」 > 「インポートするファイル」から`C:\Username\Documents\GitHub\hamazon`の中に入っている`create_database.sql`を選択して、「実行」を押します。
+* MySQLのパスワードを設定していない場合はこのステップをスキップしてください。`C:\Username\Documents\GitHub\hamazon`の中の`config.php.default`をテキストエディターで開き、以下のように自分のphpmyadminのパスワードを入力し、ファイル名を`config.php` に改名します。
 ```
 $db_host = "localhost";
 $db_user = "root";
 $db_pass = "phpmyadminのパスワード";
 $db_name = "hamazon";
 ```
-* これで、`http://localhost/`にアクセスするとハマゾンのホームページが表示されるはずです。お疲れさまでした（笑）
+* これで、`http://localhost/`にアクセスするとハマゾンのホームページが表示されるはずです。
