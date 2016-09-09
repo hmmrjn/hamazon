@@ -10,8 +10,9 @@ $mysqli = new mysqli($db_host, $db_user, $db_pass, $db_name);
 $mysqli->set_charset("utf8");
 if ($mysqli->connect_error) die("データベース接続エラー");
 
-//SQL
-$sql = "SELECT * FROM items WHERE id = '".$_GET['id']."' AND deleted = '0' ";
+//商品情報の取得
+$esc_id = $mysqli->real_escape_string($_GET['id']); //SQLI対策
+$sql = "SELECT * FROM items WHERE id = '{$esc_id}' AND deleted = '0' ";
 $res = $mysqli->query($sql);
 $item = $res->fetch_array();
 $price =  number_format( $item['price'] );
@@ -24,26 +25,29 @@ function h($s){
 
 //投稿を保存
 if (isset($_POST['do']) && $_POST['do'] == "save") {
-	//SQLインジェクション対策
-	$title = $mysqli->real_escape_string($_POST['title']);
-	$content = $mysqli->real_escape_string($_POST['content']);
-	$sql = "INSERT INTO reviews (rate, title, content, item_id, user_id, date) VALUES (
-	'{$_POST['rate']}', 
-	'{$title}', 
-	'{$content}', 
-	'{$_GET['id']}', 
-	'{$_SESSION['user_id']}', 
-	now()
-	)";
-	$mysqli->query($sql);
+	if ($_POST['title'] != "" && $_POST['content'] != "") {
+		$esc_title   = $mysqli->real_escape_string($_POST['title']);   //SQLI対策
+		$esc_content = $mysqli->real_escape_string($_POST['content']); //SQLI対策
+		$sql = "INSERT INTO reviews (rate, title, content, item_id, user_id, date) VALUES (
+		'{$_POST['rate']}', 
+		'{$esc_title}', 
+		'{$esc_content}', 
+		'{$esc_id}', 
+		'{$_SESSION['user_id']}', 
+		now()
+		)";
+		$mysqli->query($sql);
+	}
 }
+
 //平均評価の計算
-$sql = "SELECT CAST(AVG(rate) AS DECIMAL(10,1)) FROM reviews WHERE item_id = '{$_GET['id']}'";
+$sql = "SELECT CAST(AVG(rate) AS DECIMAL(10,1)) FROM reviews WHERE item_id = '{$esc_id}'";
 $res = $mysqli->query($sql);
 $avg = $res->fetch_array();
 $res->free_result();
+
 //各評価のカウント(星5が3つとか)
-$sql = "SELECT rate, COUNT(*) AS count FROM reviews GROUP BY rate, item_id HAVING item_id = {$_GET['id']}";
+$sql = "SELECT rate, COUNT(*) AS count FROM reviews GROUP BY rate, item_id HAVING item_id = {$esc_id}";
 $res = $mysqli->query($sql);
 $arc = array_fill(1, 5, null); //arc: all rates count
 while ($rc = $res->fetch_array()){ //rc: rates count
@@ -53,23 +57,28 @@ while ($rc = $res->fetch_array()){ //rc: rates count
 	}
 }
 $res->free_result();
+
 //投稿のページ分け
 $posts_by_page = 4;
 if (isset($_GET['page'])) $current_page = $_GET['page'];
 else $current_page = 1;
 $start_point = $posts_by_page * ($current_page - 1);
-$sql = "SELECT COUNT(*) FROM reviews WHERE item_id = '{$_GET['id']}'";
+$sql = "SELECT COUNT(*) FROM reviews WHERE item_id = '{$esc_id}'";
 $res = $mysqli->query($sql);
 $count = $res->fetch_array();
 $res->free_result();
 $all_pages = ($count[0] - 1) / $posts_by_page + 1;
+
+//レビューの取得
+$reviews_sql = "SELECT * FROM reviews WHERE item_id = '{$esc_id}' ORDER BY review_id DESC LIMIT " . $start_point . ", $posts_by_page";
+$reviews_res = $mysqli->query($reviews_sql);
 
 ?>
 <!Doctype html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>Hamazon | 通販</title>
+<title><?php print( $item['name'] ); ?> - Hamazon | 通販</title>
 <link rel="shortcut icon" href="/images/icon.ico">
 <link rel="stylesheet" href="/common/normalize.css">
 <link rel="stylesheet" href="/common/animate.css">
@@ -144,11 +153,7 @@ print "星$i <div class=\"progressbar\" value=\"$arc[$i]\"></div> ($arc[$i])<br>
 </div>
 <hr/>
 <?php
-
-//投稿の表示
-$sql = "SELECT * FROM reviews WHERE item_id = '{$_GET['id']}' ORDER BY review_id DESC LIMIT " . $start_point . ", $posts_by_page";
-$res = $mysqli->query($sql);
-while ($review = $res->fetch_array()) { ?>
+while ($review = $reviews_res->fetch_array()) { ?>
 <span class="rev_rate" data-score="<?php print($review['rate']); ?>"></span><b><?php
 print( h($review['title']) ); ?>
 </b><br/>
@@ -156,20 +161,20 @@ print( h($review['title']) ); ?>
 <?php if($review['user_id']=='') $user_id = "(未ログインユーザ)";
 else $user_id = h($review['user_id']);
 print( $user_id . "&nbsp&nbsp" . $review['date']); 
-if($review['user_id'] == $_SESSION['user_id']) {
+if(isset($_SESSION['user_id']) && $review['user_id'] == $_SESSION['user_id']) {
 print " <a href=\"/review/?do=edit&r_id={$review['review_id']}\">編集</a>";
 }
 ?>
 <hr/>
 <?php
 }
-$res->free_result();
+$reviews_res->free_result();
 
 //ページ番号の表示
-print("PAGE:");
+print("ページ:");
 if ($current_page != 1) {
 ?>
-&nbsp&nbsp<a href="?id=<?php print($_GET['id']); ?>&page=<?php print($current_page - 1); ?>">&lt</a>
+&nbsp;&nbsp;<a href="?id=<?php print($_GET['id']); ?>&page=<?php print($current_page - 1); ?>">&lt;</a>
 <?php
 } else {
 print("&nbsp&nbsp&nbsp&lt&nbsp");
@@ -182,7 +187,7 @@ print("&nbsp&nbsp<a href=\"?id=" . $_GET['id'] . "&page=" . $i . "\">" . $i . "<
 }
 if ($current_page <= $all_pages - 1) {
 ?>
-&nbsp&nbsp<a href="?id=<?php print($_GET['id']); ?>&page=<?php print($current_page + 1); ?>">&gt</a>
+&nbsp;&nbsp;<a href="?id=<?php print($_GET['id']); ?>&page=<?php print($current_page + 1); ?>">&gt;</a>
 <?php
 } else {
 print("&nbsp&nbsp&gt");
@@ -190,6 +195,7 @@ print("&nbsp&nbsp&gt");
 ?>
 <hr>
 <h2>レビューを投稿</h2>
+<div class="review-form">
 <form action="" method="post">
 <div id="rating"></div>
 <input id="rate" name="rate" type="hidden">
@@ -198,6 +204,7 @@ print("&nbsp&nbsp&gt");
 <input type="hidden" name="do" value="save"/>
 <input type="submit" value="投稿"/>
 </form>
+</div>
 </section>
 </main>
 <footer>
