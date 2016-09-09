@@ -49,9 +49,9 @@ $item = $res->fetch_array();
 			$order = $res->fetch_array();
 			?>
 			<ul>
-				<li>注文番号：<?php print $order['order_id']; ?></li>
-				<li>注文日付：<?php print $order['date']; ?></li>
-				<li>合計金額：&yen; <?php print $order['total_price']; ?></li>
+				<li>注文番号：<?= $order['order_id'] ?></li>
+				<li>注文日付：<?= $order['date'] ?></li>
+				<li>合計金額：&yen; <?= $order['total_price'] ?></li>
 			</ul>
 			<?php
 			$sql = "SELECT * FROM order_details INNER JOIN items ON order_details.item_id = items.id WHERE order_id = '".$_GET['id']."'";
@@ -60,7 +60,7 @@ $item = $res->fetch_array();
 			<table>
 				<tr><th>商品名</th><th>注文時の金額</th><th>個数</th></tr>
 				<?php while ( $product = $res->fetch_array() ){ ?>
-					<tr><td><?php print $product['name']; ?></td><td>&yen;<?php print $product['priced']; ?></td><td><?php print $product['quantity']; ?></td></tr>
+					<tr><td><?= $product['name']; ?></td><td>&yen;<?= $product['priced'] ?></td><td><?= $product['quantity'] ?></td></tr>
 					<?php } ?>
 				</table>
 			</main>

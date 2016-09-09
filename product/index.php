@@ -78,7 +78,7 @@ $reviews_res = $mysqli->query($reviews_sql);
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title><?php print( $item['name'] ); ?> - Hamazon | 通販</title>
+<title><?= $item['name'] ?> - Hamazon | 通販</title>
 <link rel="shortcut icon" href="/images/icon.ico">
 <link rel="stylesheet" href="/common/normalize.css">
 <link rel="stylesheet" href="/common/animate.css">
@@ -110,15 +110,15 @@ $reviews_res = $mysqli->query($reviews_sql);
 <main class="animated fadeIn">
 <section>
 <div class="box rightbox">
-<em class="big">&yen;&nbsp;<?php print( $price ); ?></em>(税別)<br>
+<em class="big">&yen;&nbsp;<?= $price ?></em>(税別)<br>
 <em class="small">ポイント:<?php if($item['price']/100>10000) { print("100"); } else { print($item['price']/100); } ?>&nbsp;pt</em><br><br>
 <form action="/cart/" method="get">
 <input type="hidden" name="do" value="add"/>
-<input type="hidden" name="p" value="<?php print $item['id']; ?>"/>
+<input type="hidden" name="p" value="<?= $item['id']; ?>"/>
 数量：
 <select name="q">
 <?php for($i=1; $i<=$item['stock']; $i++){ ?>
-<option value="<?php print $i; ?>"><?php print $i; ?></option>
+<option value="<?= $i ?>"><?= $i ?></option>
 <?php } ?>
 </select>
 <input type="submit" value="カートに入れる" />
@@ -128,13 +128,13 @@ $reviews_res = $mysqli->query($reviews_sql);
 <div class="leftbox">
 <div id="thumbnail-box">
 <div id ="thumbnail-box-inner">
-<img id="photo-opener" src="/images/product<?php print( $_GET['id'] ); ?>.jpg" width="250px"><i class="fa fa-search-plus"></i></div><em class="small">画像をクリックして拡大イメージを表示</em>
+<img id="photo-opener" src="/images/product<?= $_GET['id'] ?>.jpg" width="250px"><i class="fa fa-search-plus"></i></div><em class="small">画像をクリックして拡大イメージを表示</em>
 </div>
-<em class="big"><b><?php print( $item['name'] ); ?></b></em><br>
-<?php print( $item['date'] ); ?><br><span class="rev_rate" data-score="<?php print($avg[0]); ?>"></span><?php print($count[0]); ?>件のカスタマーレビュー<hr>
-<em class="darkred"><em class="big"><b>&yen;&nbsp;<?php print( $price ); ?></b></em>(税別)</em>
+<em class="big"><b><?= $item['name'] ?></b></em><br>
+<?= $item['date'] ?><br><span class="rev_rate" data-score="<?= $avg[0] ?>"></span><?= $count[0] ?>件のカスタマーレビュー<hr>
+<em class="darkred"><em class="big"><b>&yen;&nbsp;<?= $price ?></b></em>(税別)</em>
 <b>通常配送無料</b></em><br>
-<em class="green"><b><?php print( $item['stock'] ); ?>点</b>在庫有り。</em><br>
+<em class="green"><b><?= $item['stock'] ?>点</b>在庫有り。</em><br>
 この商品は、Hamazonが販売、発送します。<br>
 ギフトラッピングは利用できません。<br>
 </a>
@@ -142,10 +142,10 @@ $reviews_res = $mysqli->query($reviews_sql);
 </section>
 <section>
 <h2>商品の説明</h2>
-<?php print( $item['details'] ); ?>
+<?= $item['details'] ?>
 </section>
 <section>
-<h2>カスタマーレビュー(<?php print($count[0]); ?>件)</h2>
+<h2>カスタマーレビュー(<?= $count[0] ?>件)</h2>
 <div id="ratings-left-box">
 <?php for($i=5; $i>=1; $i--){
 print "星$i <div class=\"progressbar\" value=\"$arc[$i]\"></div> ($arc[$i])<br>\n";
@@ -154,10 +154,9 @@ print "星$i <div class=\"progressbar\" value=\"$arc[$i]\"></div> ($arc[$i])<br>
 <hr/>
 <?php
 while ($review = $reviews_res->fetch_array()) { ?>
-<span class="rev_rate" data-score="<?php print($review['rate']); ?>"></span><b><?php
-print( h($review['title']) ); ?>
-</b><br/>
-<?php print( h($review['content']) ); ?><br/>
+<span class="rev_rate" data-score="<?= $review['rate'] ?>"></span>
+<b><?= h($review['title']) ?></b><br/>
+<?= h($review['content']) ?><br/>
 <?php if($review['user_id']=='') $user_id = "(未ログインユーザ)";
 else $user_id = h($review['user_id']);
 print( $user_id . "&nbsp&nbsp" . $review['date']); 
@@ -174,7 +173,7 @@ $reviews_res->free_result();
 print("ページ:");
 if ($current_page != 1) {
 ?>
-&nbsp;&nbsp;<a href="?id=<?php print($_GET['id']); ?>&page=<?php print($current_page - 1); ?>">&lt;</a>
+&nbsp;&nbsp;<a href="?id=<?= $_GET['id'] ?>&page=<?= $current_page - 1 ?>">&lt;</a>
 <?php
 } else {
 print("&nbsp&nbsp&nbsp&lt&nbsp");
@@ -187,7 +186,7 @@ print("&nbsp&nbsp<a href=\"?id=" . $_GET['id'] . "&page=" . $i . "\">" . $i . "<
 }
 if ($current_page <= $all_pages - 1) {
 ?>
-&nbsp;&nbsp;<a href="?id=<?php print($_GET['id']); ?>&page=<?php print($current_page + 1); ?>">&gt;</a>
+&nbsp;&nbsp;<a href="?id=<?= $_GET['id'] ?>&page=<?= $current_page + 1 ?>">&gt;</a>
 <?php
 } else {
 print("&nbsp&nbsp&gt");
@@ -212,8 +211,8 @@ print("&nbsp&nbsp&gt");
 </footer>
 </div>
 <div class="photo">
-<img src="../images/product<?php print( $_GET['id'] ); ?>.jpg"><br>
-<?php print( $item['name'] ); ?>
+<img src="../images/product<?= $_GET['id'] ?>.jpg"><br>
+<?= $item['name'] ?>
 </div>
 <script src="script.js"></script>
 <script>
@@ -222,7 +221,7 @@ var $self = $(this);
 var $selfVal = parseInt($(this).attr('value'));
 $self.progressbar({
 value: $selfVal,
-max: <?php echo $count[0]; ?>
+max: <?= $count[0] ?>
 });
 });
 </script>

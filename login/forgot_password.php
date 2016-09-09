@@ -117,13 +117,13 @@ if( isset($_GET['id']) ) $login_id = $_GET['id'];
 </div>
 <section>
 <?php if( isset($message) ) { ?>
-<div class="notifybox"><?php print $message; ?></div>
+<div class="notifybox"><?= $message ?></div>
 <br/><br/>
 <?php } ?>
 <?php if($show_reset_form) { ?>
 <form action="" method="post">
 <table class="t1">
-<tr><td>ログインID：</td><td><?php print $_GET['id'] ?></td></tr>
+<tr><td>ログインID：</td><td><?= $_GET['id'] ?></td></tr>
 <tr><td>新しいパスワード：</td><td><input type="text" name="new_pass" /></td></tr>
 </table>
 <input type="hidden" name ="do" value="save" />
@@ -133,7 +133,7 @@ if( isset($_GET['id']) ) $login_id = $_GET['id'];
 <p>パスワード再設定用のメールを送信します。登録したログインIDもしくはメールアドレスを入力して下さい。</p>
 <form action="" method="post">
 <table class="t1">
-<tr><td>ログインID：</td><td><input type="text" name="id" value="<?php print($login_id); ?>"/></td></tr>
+<tr><td>ログインID：</td><td><input type="text" name="id" value="<?= $login_id ?>"/></td></tr>
 <tr><td></td><td>もしくは</td></tr>
 <tr><td>メールアドレス：</td><td><input type="text" name="mail" value=""/></td></tr>
 </table>

@@ -41,7 +41,7 @@ $res = $mysqli->query($sql);
 </header>
 <main class="animated fadeIn">
 <?php if( isset($message) ) { ?>
-<div class="notifybox"><?php print $message; ?></div>
+<div class="notifybox"><?= $message ?></div>
 <?php } ?>
 <h2><i class="fa fa-chevron-right"></i> 商品一覧</h2>
 <table class="standard-table">
@@ -60,13 +60,13 @@ while( $item = $res->fetch_array() ) {
 $price = number_format( $item['price'] );
 ?>
 <tr>
-<td><a href="/product/?id=<?php print( $item['id'] ); ?>">
-<img src="/images/product<?php print( $item['id'] ); ?>.jpg" alt="<?php print( $item['name'] ); ?>の画像" width="200px"></a></td>
-<td><a href="/product/?id=<?php print( $item['id'] ); ?>"><?php print( $item['name'] ); ?></a></td>
-<td><font color="green"><?php print( $item['stock'] ); ?>点在庫有り</font></td>
-<td><font color="darkred">&yen;<?php print( $price ); ?></font>
+<td><a href="/product/?id=<?= $item['id'] ?>">
+<img src="/images/product<?= $item['id'] ?>.jpg" alt="<?= $item['name'] ?>の画像" width="200px"></a></td>
+<td><a href="/product/?id=<?= $item['id'] ?>"><?= $item['name'] ?></a></td>
+<td><font color="green"><?= $item['stock'] ?>点在庫有り</font></td>
+<td><font color="darkred">&yen;<?= $price ?></font>
 <br>(税別)</td>
-<td><a href="/product/?id=<?php print( $item['id'] ); ?>" class="cntbtn active"><i class="fa fa-tags"></i>&nbsp;詳細を見る</a></td>
+<td><a href="/product/?id=<?= $item['id'] ?>" class="cntbtn active"><i class="fa fa-tags"></i>&nbsp;詳細を見る</a></td>
 </tr>
 <?php
 }

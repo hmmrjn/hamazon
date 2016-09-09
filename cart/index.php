@@ -103,11 +103,11 @@ function cart_empty(){
 				<table class="t2">
 					<tr>
 						<td>商品：</td>
-						<td>&yen;&nbsp;<?php print $total_price; ?></td>
+						<td>&yen;&nbsp;<?= $total_price ?></td>
 					</tr>
 					<tr>
 						<td>消費税：</td>
-						<td>&yen;&nbsp;<?php print $total_price*0.08; ?></td>
+						<td>&yen;&nbsp;<?= $total_price*0.08 ?></td>
 					</tr>
 					<tr>
 						<td>送料：</td>
@@ -124,7 +124,7 @@ function cart_empty(){
 					</tr>
 					<tr>
 						<td class="t2"><b>合計：</b></td>
-						<td class="t2"><b>&yen;&nbsp;<?php print $total_price*1.08; ?></b></td>
+						<td class="t2"><b>&yen;&nbsp;<?= $total_price*1.08 ?></b></td>
 					</tr>
 				</table>
 				<form action="" method="get" style="text-align: center;">
@@ -142,7 +142,7 @@ function cart_empty(){
 		</div>
 		<div class="box leftbox">
 			<h2><i class="fa fa-shopping-cart"></i>&nbsp;カート</h2>
-			<?php print $message; ?> 
+			<?= $message ?> 
 			<table class="t1">
 				<tr>
 					<th>商品</th>
@@ -153,10 +153,10 @@ function cart_empty(){
 				<?php 
 				foreach ( $_SESSION['cart'] as $cart_item ){ ?>
 				<tr>
-					<td><?php print $cart_item['name'] ."&nbsp"; ?></td>
-					<td>&yen;<?php print $cart_item['price'] ."&nbsp"; ?></td>
-					<td><?php print $cart_item['quantity'] ."個"; ?></td>
-					<td><a href="/cart/?do=remove&p=<?php print $cart_item['id']; ?>">削除</a></td>
+					<td><?= $cart_item['name'] ."&nbsp" ?></td>
+					<td>&yen;<?= $cart_item['price'] ."&nbsp" ?></td>
+					<td><?= $cart_item['quantity'] ."個" ?></td>
+					<td><a href="/cart/?do=remove&p=<?= $cart_item['id'] ?>">削除</a></td>
 				</tr>
 				<?php } ?>
 			</table>

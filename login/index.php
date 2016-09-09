@@ -87,12 +87,12 @@ if( isset($_GET['id']) ) $login_id = $_GET['id'];
 </div>
 <section>
 <?php if( isset($message) ) { ?>
-<div class="notifybox"><?php print $message; ?></div>
+<div class="notifybox"><?= $message ?></div>
 <br/><br/>
 <?php } ?>
 <form action="" method="post">
 <table class="t1">				
-<tr><td>ログインID：</td><td><input type="text" name="id" value="<?php print($login_id); ?>"/></td></tr>
+<tr><td>ログインID：</td><td><input type="text" name="id" value="<?= $login_id ?>"/></td></tr>
 <tr><td>パスワード：</td><td><input type="password" name="pass" value=""/></td></tr>
 </table>
 <input type="hidden" name ="do" value="login" />

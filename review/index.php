@@ -101,25 +101,24 @@ if( isset($_GET['do']) && $_GET['do']=="edit" && $r_exists ){
 </header>
 <main class="animated fadeIn">
 <?php if( isset($message) ) { ?>
-<div class="notifybox"><?php print $message; ?></div>
+<div class="notifybox"><?= $message ?></div>
 <br/><br/>
 <?php } 
 if( isset($_GET['do']) && $_GET['do']=="edit" && $correct_user){
 ?>
 <h2>レビューを編集</h2>
-<form action="/review/?r_id=<?php print $_GET['r_id']; ?>" method="post">
-<div id="rating" value="<?php print $r_rate; ?>"></div>
+<form action="/review/?r_id=<?= $_GET['r_id'] ?>" method="post">
+<div id="rating" value="<?= $r_rate ?>"></div>
 <input id="rate" name="rate" type="hidden">
-<input type="text" name="title" placeholder=" 見出し" value="<?php print $r_title; ?>"/><br>
-<textarea name="content" placeholder=" 本文"　rows="4" cols="40"><?php print $r_content; ?></textarea><br>
+<input type="text" name="title" placeholder=" 見出し" value="<?= $r_title ?>"/><br>
+<textarea name="content" placeholder=" 本文"　rows="4" cols="40"><?= $r_content ?></textarea><br>
 <input type="hidden" name="do" value="save"/>
 <input type="submit" value="保存"/>
 </form>
 <?php } elseif($r_exists) { ?>
-<span class="rev_rate" data-score="<?php print $r_rate; ?>"></span><b><?php
-print h($r_title); ?>
-</b><br/>
-<?php print( h($r_content) ); ?><br/>
+<span class="rev_rate" data-score="<?= $r_rate ?>"></span>
+<b><?= h($r_title) ?></b><br/>
+<?= h($r_content) ?><br/>
 <?php if($r_user_id=='') $user_id = "(未ログインユーザ)";
 else $user_id = h($r_user_id);
 print( $user_id . "&nbsp&nbsp" . $review['date']);

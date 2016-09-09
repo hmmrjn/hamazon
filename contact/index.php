@@ -82,18 +82,18 @@ if(isset($_GET['st']) and $_GET['st'] == "sent"){
 </div>
 <section>
 <?php if( isset($message) ) { ?>
-<div class="notifybox"><?php print $message; ?></div>
+<div class="notifybox"><?= $message ?></div>
 <br/><br/>
 <?php } ?>
 <form method="post" action="">
 <table>
 <tr>
 <td>お名前</td>
-<td><input type="text" name="name" value="<?php print $name; ?>"></td>
+<td><input type="text" name="name" value="<?= $name ?>"></td>
 </tr>
 <tr>
 <td>メールアドレス</td>
-<td><input type="text" name="mail" value="<?php print $mail; ?>"></td>
+<td><input type="text" name="mail" value="<?= $mail ?>"></td>
 </tr>
 <tr>
 <td>内容 (必須)</td>

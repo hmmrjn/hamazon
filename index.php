@@ -71,16 +71,16 @@ $price =  number_format( $item['price'] );
 
 <div class="item">
 <div class="item_image">
-<a href="product/?id=<?php print( $item['id'] ); ?>"><img src="images/product<?php print( $item['id'] ); ?>.jpg" alt="<?php print( $item['name'] ); ?>の画像" height="160px"></a>
+<a href="product/?id=<?= $item['id'] ?>"><img src="images/product<?= $item['id'] ?>.jpg" alt="<?= $item['name'] ?>の画像" height="160px"></a>
 </div>
 <div class="item_name">
-<?php print $item_index; ?>. <a href="product/?id=<?php print( $item['id'] ); ?>"><?php print( $item['name'] ); ?></a>
+<?= $item_index ?>. <a href="product/?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
 </div>
 <div class="item_rate">
-<span class="rev_rate" value="<?php print ($item['avg']); ?>"></span> (<?php print ($item['avg']); ?>)
+<span class="rev_rate" value="<?= $item['avg'] ?>"></span> (<?= $item['avg'] ?>)
 </div>
 <div class="item_price">
-<font color="darkred">&yen;<?php print( $price ); ?></font>
+<font color="darkred">&yen;<?= $price ?></font>
 </div>
 </div>
 <?php
@@ -101,16 +101,16 @@ $price =  number_format( $item['price'] );
 
 <div class="item">
 <div class="item_image">
-<a href="product/?id=<?php print( $item['id'] ); ?>"><img src="images/product<?php print( $item['id'] ); ?>.jpg" alt="<?php print( $item['name'] ); ?>の画像" height="160px"></a>
+<a href="product/?id=<?= $item['id'] ?>"><img src="images/product<?= $item['id'] ?>.jpg" alt="<?= $item['name'] ?>の画像" height="160px"></a>
 </div>
 <div class="item_name">
-<?php print $item_index; ?>. <a href="product/?id=<?php print( $item['id'] ); ?>"><?php print( $item['name'] ); ?></a>
+<?= $item_index ?>. <a href="product/?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
 </div>
 <div class="item_rate">
-<span class="rev_rate" value="<?php print ($item['avg']); ?>"></span> (<?php print ($item['avg']); ?>)
+<span class="rev_rate" value="<?= $item['avg'] ?>"></span> (<?= $item['avg'] ?>)
 </div>
 <div class="item_price">
-<font color="darkred">&yen;<?php print( $price ); ?></font>
+<font color="darkred">&yen;<?= $price ?></font>
 </div>
 </div>
 <?php
@@ -137,18 +137,18 @@ $reg_date = date_format($reg_date, 'Y年 m月 d日');
 
 <div class="item">
 <div class="item_image">
-<a href="product/?id=<?php print( $item['id'] ); ?>"><img src="images/product<?php print( $item['id'] ); ?>.jpg" alt="<?php print( $item['name'] ); ?>の画像" height="160px"></a>
+<a href="product/?id=<?= $item['id'] ?>"><img src="images/product<?= $item['id'] ?>.jpg" alt="<?= $item['name'] ?>の画像" height="160px"></a>
 </div>
 <div class="item_name">
-<?php print $item_index; ?>. <a href="product/?id=<?php print( $item['id'] ); ?>"><?php print( $item['name'] ); ?></a>
+<?= $item_index ?>. <a href="product/?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
 </div>
 <div class="item_rate">
-<span class="rev_rate" value="<?php print ($rate['avg']); ?>"></span> (<?php print ($rate['avg']); ?>)
+<span class="rev_rate" value="<?= $rate['avg'] ?>"></span> (<?= $rate['avg'] ?>)
 </div>
 <div class="item_price">
-<font color="darkred">&yen;<?php print( $price ); ?></font><br/>
+<font color="darkred">&yen;<?= $price ?></font><br/>
 </div>
-<div class="item_date">登録日：<?php print( $reg_date ); ?></div>
+<div class="item_date">登録日：<?= $reg_date ?></div>
 </div>
 <?php
 $item_index++;

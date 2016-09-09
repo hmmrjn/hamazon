@@ -99,7 +99,7 @@ $orders_res = $mysqli->query($orders_sql);
 </div>
 <section>
 <?php if( isset($message) ) { ?>
-<div class="notifybox"><?php print $message; ?></div>
+<div class="notifybox"><?=  $message; ?></div>
 <br/><br/>
 <?php } ?>
 <h2>基本情報</h2>
@@ -115,8 +115,8 @@ if( $user = $user_res->fetch_array() ){
 ?>
 <form action="/account/" method="post">
 <table>
-<tr><td>氏名：</td><td><input type="text" name="name" value="<?php print $user['name']; ?>"/></td></tr>
-<tr><td>メール：</td><td><input type="text" name="mail" value="<?php print $user['mail']; ?>"/></td></tr>
+<tr><td>氏名：</td><td><input type="text" name="name" value="<?= $user['name'] ?>"/></td></tr>
+<tr><td>メール：</td><td><input type="text" name="mail" value="<?= $user['mail'] ?>"/></td></tr>
 </table>
 <input type="hidden" name ="save" value="info" />
 <input type="submit" value="保存" />
@@ -140,10 +140,10 @@ if( $user = $user_res->fetch_array() ){
 	} else {
 ?>
 <table>
-<tr><th>氏名：</th><td><?php print $user['name']; ?></td></tr>
-<tr><th>メール：</th><td><?php print $user['mail']; ?></td></tr>				
-<tr><th>ログインID：</th><td><?php print $user['user_id']; ?></th></tr>
-<tr><th>登録日：</th><td><?php print date_format($reg_date, 'Y年 m月 d日'); ?></td></tr>
+<tr><th>氏名：</th><td><?= $user['name'] ?></td></tr>
+<tr><th>メール：</th><td><?= $user['mail'] ?></td></tr>				
+<tr><th>ログインID：</th><td><?= $user['user_id'] ?></th></tr>
+<tr><th>登録日：</th><td><?= date_format($reg_date, 'Y年 m月 d日') ?></td></tr>
 </table>
 <a href="?edit=info" class="cntbtn active">アカウント情報を編集</a>
 <a href="?edit=pass" class="cntbtn active">パスワードを変更</a>
@@ -157,10 +157,15 @@ if( $user = $user_res->fetch_array() ){
 
 ?>
 <table class="orders">
-<tr><th>注文番号</th><th>日付</th><th>金額</th><th>詳細</th></tr>
+<tr>
+<th>注文番号</th><th>日付</th><th>金額</th><th>詳細</th></tr>
 <?php while ( $order = $orders_res->fetch_array() ){ 
 $date = date_create($order['date']); ?>
-<tr><td><?php print $order['order_id']; ?></td><td><?php print date_format($date, 'Y年 m月 d日'); ?></td><td>&yen;<?php print number_format($order['total_price']); ?></td><td><a href="/order_details/?id=<?php print $order['order_id']; ?>">詳細を見る</a></td></tr>
+<tr><td><?= $order['order_id'] ?></td>
+<td><?= date_format($date, 'Y年 m月 d日') ?></td>
+<td>&yen;<?= number_format($order['total_price']) ?></td>
+<td><a href="/order_details/?id=<?= $order['order_id'] ?>">詳細を見る</a></td>
+</tr>
 <?php }
 if($orders_res->num_rows == 0){ ?>
 <td colspan="4" style="text-align:left">まだ注文がありません。さっそく欲しい商品を注文しよう！</td>
@@ -170,9 +175,9 @@ if($orders_res->num_rows == 0){ ?>
 <table><tr><th>商品</th>	<th>評価</th><th>編集</th></tr>
 <?php while($review = $reviews_res->fetch_array()){ ?>
 <tr>
-<?php print("<td><a href=\"/product/?id={$review['id']}\">{$review['name']}</a></td>"); ?>
-<td><span class="rev_rate" data-score="<?php print($review['rate']); ?>"></span></td>
-<td><a href="/review/?do=edit&r_id=<?php print $review['review_id']; ?>">編集</a></td>
+<td><a href="/product/?id=<?= $review['id'] ?>"><?= $review['name'] ?></a></td>
+<td><span class="rev_rate" data-score="<?= $review['rate'] ?>"></span></td>
+<td><a href="/review/?do=edit&r_id=<?= $review['review_id'] ?>">編集</a></td>
 </tr>
 <?php } 
 if($reviews_res->num_rows == 0){ ?><td colspan="4" style="text-align:left">まだレビューがありません。気に入った商品はレビュー投稿しよう！</td><?php } ?>

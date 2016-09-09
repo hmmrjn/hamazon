@@ -115,9 +115,9 @@ _EOT_;
 </div>
 <section>
 <?php if( isset($message) ) { ?>
-<div class="notifybox"><?php print $message; ?></div>
+<div class="notifybox"><?= $message ?></div>
 <?php } else if ( $err_message != "" ){?>
-<div class="notifybox"><?php print $err_message; ?></div>
+<div class="notifybox"><?= $err_message ?></div>
 <?php } ?>
 <form action="" method="post">
 <table class="t1">
