@@ -71,15 +71,16 @@ if(isset($_GET['st']) and $_GET['st'] == "sent"){
 
 -->
 <body>
-<div id="container">
 <header>
-<?php $currentPage='none'; include '../templates/header.php' ?>
+<div class="container">
+<?php $currentPage='home'; include '../templates/header.php' ?>
+</div>
 </header>
-<main class="animated fadeIn">
+<div id="container">
 <div class="banner">
-<img src="/images/entrance.jpg">
 <p class="animated fadeInRight" id="title">お問い合わせ</p>
 </div>
+<main class="animated fadeIn">
 <section>
 <?php if( isset($message) ) { ?>
 <div class="notifybox"><?= $message ?></div>

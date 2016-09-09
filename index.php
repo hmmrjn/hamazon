@@ -45,19 +45,20 @@ $sql_new3 = "SELECT date, id, name, price FROM items ORDER BY date DESC LIMIT 0,
 
 -->
 <body>
-<div id="container">
-<header class="animated slideInDown">
+<header>
+<div class="container">
 <?php $currentPage='home'; include 'templates/header.php' ?>
+</div>
 </header>
-<main class="animated fadeIn">
+<div id="container">
 <div class="large-banner">
-<img src="images/entrance.jpg">
 <div id="large-banner-content">
 <p class="animated fadeInUp">Hamazonでは通販をリアリスティックに疑似体験できます。<br/>
 実際にアカウント登録したり、レビューを投稿できるよ。</p>
 <a href="/all_products/" class="cntbtn active" id="all-products-btn"><i class="fa fa-th-list"></i>商品一覧</a>
 </div>
 </div>
+<main class="animated fadeIn">
 <section>
 <h2><i class="fa fa-chevron-right"></i> ベストセラー</h2>
 <div class="items_container">

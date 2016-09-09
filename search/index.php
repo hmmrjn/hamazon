@@ -42,10 +42,12 @@ if(strpos($_GET['word'],' ') !== false || strpos($_GET['word'],'　') !== false)
 
 -->
 <body>
-<div id="container">
 <header>
-<?php $currentPage='none'; include '../templates/header.php' ?>
+<div class="container">
+<?php $currentPage='home'; include '../templates/header.php' ?>
+</div>
 </header>
+<div id="container">
 <main class="animated fadeIn">
 <?php if( isset($message) ) { ?>
 <div class="notifybox"><?= $message ?></div>

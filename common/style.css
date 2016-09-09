@@ -21,15 +21,19 @@
 ===================================================*/
 
 body {
-	background-color: lightgray;
-	/*background-image: -webkit-linear-gradient(-45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
-	background-image: linear-gradient(-45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
-	background-size: 8px 8px;*/
+	background-color: whitesmoke;
 	color: #333333;
 	font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', 'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
 #container {
-	width: 980px;
+	widht:100%;
+	max-width: 980px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.container {
+	widht:100%;
+	max-width: 980px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -64,11 +68,17 @@ em.dodgeblue {
 ===================================================*/
 
 header {
-	background: linear-gradient(white 90%, whitesmoke);
+	background: white;
+	margin-bottom: 20px;
 	padding: 5px 15px;
-	border-top: solid 3px #66CC00;
 	height: 60px;
-	box-shadow: 0 0 10px gray;
+	/*box-shadow: 0 0 10px gray;*/
+	box-shadow: 0 0 1px rgba(0,0,0,.15);
+}
+@media screen and (max-width: 979px){
+	header {
+		margin-bottom: 0;
+	}
 }
 .logo {
 	float: left;
@@ -76,13 +86,26 @@ header {
 }
 .searchBox {
 	float: left;
-	padding-left: 38px;
-	padding-top: 4px;
+	margin-left: 38px;
+	margin-top: 13px;
+	position: relative;
 }
 .searchBox input[type="text"] {
 	padding: 5px 10px;
-	width: 200px;
+	width: 240px;
 	background: whitesmoke;
+}
+.searchBox input[type="text"]:focus {
+	background: white;
+}
+.searchBox button {
+	padding: 0;
+	border: none;
+	background: none;
+	color: gray;
+	position: absolute;
+	right: 10px;
+	top: 8px;
 }
 nav {
 	float: right;
@@ -93,7 +116,7 @@ nav li {
 	float: left;
 	list-style: none;
 	padding: 5px 20px;
-	border-left: 1px solid #808080;
+	/*border-left: 1px solid #808080;*/
 }
 nav li:first-child {
 	border-left: none;
@@ -103,83 +126,76 @@ nav a {
 	color: gray;
 }
 nav .selected div {
-	color: darkorange;
-	background: whitesmoke;
-	box-shadow: 0 0 10px lightgray inset;
-	border-radius: 5px;
-	padding: 5px 10px;
-	margin-top: -5px;
+	color: black;
 }
-nav .selected a {
-	color: darkorange;
+
+/*カートの中の商品の数を表示する部分*/
+.items-number {
+	background-color: rgba(0, 0, 0, 0.1);
+	display: inline-block;
+	line-height: 1em;
+	margin: 0 6px;
+	padding: 4px 6px;
+	border-radius: 4px;
 }
 
 /*===================================================
-メイン
+バーナー
 ===================================================*/
 
-main {
-	background-color: white;
-	margin: 25px 0;
-	padding: 25px;
-	box-shadow: 0 0 10px gray;
-}
-section {
-	overflow: hidden;
-	clear: both;
-	margin-top: 25px;
-}
-
-/* バーナー */
-
 .banner {
-	width: 930px;
-	height: 200px;
-	background-color: blue;
+	width: 100%;
+	max-width: 980px;
+	height: 100px;
 	position: relative;
+	background: linear-gradient( rgba(75, 190, 110, 0.3), rgba(75, 190, 110, 0.8) ), url('/images/new_logo_white.png');
+	background-color: rgb(75, 190, 110);
+	background-repeat: no-repeat;
+	background-position:80%;
 }
-.banner img {
-	width: 930px;
-	/* rect(右上Y, 右上X, 左下Y, 左下X) */
-	clip: rect( 0px, 930px, 200px, 0px);
-	position: absolute;
-	left: -0px;
-	top: -0px;
-	opacity: 0.8;
+@media screen and (min-width: 980px){
+	.banner {
+		height: 160px;
+		margin-top: 20px;
+		border-radius: 4px 4px 0 0;
+	}
 }
 .banner #title {
 	font-family: 'Noto Sans Japanese', sans-serif;
 	color: white;
 	font-size: 30px;
-	font-weight: normal;
-	text-shadow: 1px 1px 3px darkblue;
+	font-weight: 400;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 	position: absolute;
-	left: 20px;
+	left: 25px;
 	bottom: -25px;
 }
 
 /* 大きいバーナー */
 
 .large-banner {
-	width: 930px;
+	width: 100%;
+	max-width: 980px;
 	height: 365px;
 	background-color: dodgerblue;
 	position: relative;
+	/*background-image: url('/images/entrance.jpg');*/
+	background: linear-gradient( rgba(0, 150, 255, 0.3), rgba(0, 0, 0, 0.3) ), url('/images/entrance.jpg');
+	background-size: cover;
+	background-position:center;
 }
-.large-banner img {
-	width: 930px;
-	/* rect(右上Y, 右上X, 左下Y, 左下X) */
-	clip: rect( 0px, 930px, 365px, 0px);
-	position: absolute;
-	left: -0px;
-	top: -0px;
-	opacity: 0.6;
+@media screen and (min-width: 980px){
+	.large-banner {
+		margin: 20px 0;
+		border-radius: 10px;
+	}
 }
 #large-banner-content {
 	position: absolute;
 	left: 0px;
 	bottom: 30px;
-	width: 930px;
+	width: 100%;
+	max-width: 980px;
 	text-align: center;
 }
 .large-banner p {
@@ -189,10 +205,26 @@ section {
 }
 .large-banner a {
 	opacity: 1;
-	background: chocolate;
+	background: rgba(75, 190, 110, 0.8);
 }
 .large-banner a:hover {
-	background: darkorange;
+	background: rgb(75, 190, 110);
+}
+
+/*===================================================
+メイン
+===================================================*/
+
+main {
+	background-color: white;
+	/*margin: 25px 0;*/
+	padding: 25px;
+	/*box-shadow: 0 0 10px gray;*/
+}
+section {
+	overflow: hidden;
+	clear: both;
+	/*margin-top: 25px;*/
 }
 
 /* 通知ボックス */
@@ -240,13 +272,13 @@ h2 {
 /*アイテム*/
 
 .items_container{
-width :100%;
+	width :100%;
 }
 .item{
-width:33%;
-height:220px;
-float:left;
-padding-bottom: 30px;
+	width:33%;
+	height:220px;
+	float:left;
+	padding-bottom: 30px;
 }
 .item img{
 	border-radius: 10px;

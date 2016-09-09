@@ -95,10 +95,12 @@ if( isset($_GET['do']) && $_GET['do']=="edit" && $r_exists ){
 
 -->
 <body>
-<div id="container">
 <header>
-<?php $currentPage='none'; include '../templates/header.php' ?>
+<div class="container">
+<?php $currentPage='home'; include '../templates/header.php' ?>
+</div>
 </header>
+<div id="container">
 <main class="animated fadeIn">
 <?php if( isset($message) ) { ?>
 <div class="notifybox"><?= $message ?></div>

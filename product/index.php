@@ -103,10 +103,12 @@ $reviews_res = $mysqli->query($reviews_sql);
 -->
 
 <body>
-<div id="container">
 <header>
-<?php $currentPage='none'; include '../templates/header.php' ?>
+<div class="container">
+<?php $currentPage='home'; include '../templates/header.php' ?>
+</div>
 </header>
+<div id="container">
 <main class="animated fadeIn">
 <section>
 <div class="box rightbox">

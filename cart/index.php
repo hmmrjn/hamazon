@@ -73,7 +73,7 @@ function cart_empty(){
 <html lang="ja">
 <head>
 	<meta charset="utf-8">
-	<title>Hamazon | 通販 - ファッション、家電から食品まで</title>
+	<title>カート - Hamazon | 通販 - ファッション、家電から食品まで</title>
 	<link rel="shortcut icon" href="/images/icon.ico">
 	<link rel="stylesheet" href="/common/normalize.css">
 	<link rel="stylesheet" href="/common/animate.css">
@@ -93,10 +93,12 @@ function cart_empty(){
 -->
 
 <body>
-	<div id="container">
-		<header>
+	<header>
+		<div class="container">
 			<?php $currentPage='cart'; include '../templates/header.php' ?>
-		</header>
+		</div>
+	</header>
+	<div id="container">
 		<main class="animated fadeIn">
 			<div class="box rightbox">
 				<h2>支払金額</h2>
