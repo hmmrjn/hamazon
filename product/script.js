@@ -5,7 +5,7 @@ $('#photo-opener').hover(function(){
 },
 function(){
   $(this).fadeTo("fast", 1);
-})
+});
 
 $( ".photo" ).dialog({
   autoOpen: false,
@@ -18,20 +18,20 @@ $( "#photo-opener" ).click(function() {
   $( ".photo" ).dialog( "open" );
 });
 
- $('#rating').raty({
+$('#rating').raty({
   path: '/images/',
   target : "[name='rate']",
   targetType: 'score',
   targetKeep : true
 });
 
-$('.rev_rate').raty({
-readOnly: true,
-half:  true,
-path: '/images/',
-score: function() {
-return $(this).attr('data-score');
-}
+$('.rev-rate').raty({
+  readOnly: true,
+  half:  true,
+  path: '/images/',
+  score: function() {
+    return $(this).attr('data-score');
+  }
 });
 
 });

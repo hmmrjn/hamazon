@@ -8,14 +8,14 @@ $mysqli->set_charset("utf8");
 if ($mysqli->connect_error) die("データベースの接続エラー");
 
 //会員をデータベースに登録
-$err_message = "";
+$error_message = "";
 if ( isset($_POST['do']) && $_POST['do'] == "regist" ){
 	$esc_id   = $mysqli->real_escape_string($_POST['id']);   //SQLI対策
 	$esc_name = $mysqli->real_escape_string($_POST['name']); //SQLI対策
 	$esc_mail = $mysqli->real_escape_string($_POST['mail']); //SQLI対策
 	$md5_pass = md5($_POST['pass']);						 //パスワードを暗号化
 	if( $_POST['id'] == "" || $_POST['name'] == "" || $_POST['mail'] == "" || $_POST['pass'] == "" ){
-		$err_message = "未入力のところがあります。";
+		$error_message = "未入力のところがあります。";
 	} else {
 		//ログインIDの既存確認
 		$sql = "SELECT * FROM users WHERE user_id = '{$esc_id}'" ;
@@ -25,31 +25,31 @@ if ( isset($_POST['do']) && $_POST['do'] == "regist" ){
 		$mail_res = $mysqli->query( $sql );
 		//入力に問題があるか確認
 		if   ($id_res->num_rows > 0){
-			$err_message .= "この「ログインID」は既に使われています。<br/>";
+			$error_message .= "この「ログインID」は既に使われています。<br/>";
 		} if ($mail_res->num_rows > 0){
-			$err_message .= "この「メールアドレス」は既に使われています。<br/>";
+			$error_message .= "この「メールアドレス」は既に使われています。<br/>";
 		} if (!preg_match('/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,5}$/', $_POST['mail'])) {
-			$err_message .= "この「メールアドレス」は無効です。<br/>";
+			$error_message .= "この「メールアドレス」は無効です。<br/>";
 		} if (strlen($_POST['id']) > 20) {
-			$err_message .= "「ログインID」は20文字以内にしてください。<br/>";
+			$error_message .= "「ログインID」は20文字以内にしてください。<br/>";
 		} if (strlen($_POST['id']) < 6 ) {
-			$err_message .= "「ログインID」は6文字以上にしてください。<br/>";
+			$error_message .= "「ログインID」は6文字以上にしてください。<br/>";
 		} if (strlen($_POST['pass']) > 20) {
-			$err_message .= "「パスワード」は20文字以内にしてください。<br/>";
+			$error_message .= "「パスワード」は20文字以内にしてください。<br/>";
 		} if (strlen($_POST['pass']) < 6 ) {
-			$err_message .= "「パスワード」は6文字以上にしてください。<br/>";
+			$error_message .= "「パスワード」は6文字以上にしてください。<br/>";
 		} if (strpos($_POST['id'],' ') !== false || 
 			strpos($_POST['id'],'　'/*全角空白*/) !== false || 
 			strpos($_POST['pass'],' ') !== false) {
-			$err_message .= "「ログインID」と「パスワード」で空白を使わないでください。";
+			$error_message .= "「ログインID」と「パスワード」で空白を使わないでください。";
 		}
 		//問題がなければDBに保存
-		if( $err_message == "" ) {
+		if( $error_message == "" ) {
 			$sql = "INSERT INTO users (user_id, name, mail, password, date, active)";
 			$sql .= "VALUES ('{$esc_id}', '{$esc_name}', '{$esc_mail}', '{$md5_pass}', now(), 0 ) ";
 			$res = $mysqli->query( $sql );
 			if( empty( $mysqli->error ) ){
-				$message = $_POST['mail']."に登録完了用メールを送信しました。";
+				$success_message = $_POST['mail']."に登録完了用メールを送信しました。";
 				//登録完了用メールの送信
 				$subject = "$site_name 登録確認メール";
 				$headers = "From: $support_mail";
@@ -71,7 +71,7 @@ $site_url
 _EOT_;
 				mail($_POST['mail'], $subject, $body, $headers);
 			} else {
-				$message = "<b>システムエラー</b><br/>予期せぬエラーが発生しました。<br/>運営までお問い合わせください。(エラー内容：" . $mysqli->error . ")";
+				$error_message = "<b>システムエラー</b><br/>予期せぬエラーが発生しました。<br/>運営までお問い合わせください。(エラー内容：" . $mysqli->error . ")";
 			}
 		}
 	}
@@ -115,17 +115,17 @@ _EOT_;
 </div>
 <main class="animated fadeIn">
 <section>
-<?php if( isset($message) ) { ?>
-<div class="notifybox"><?= $message ?></div>
-<?php } else if ( $err_message != "" ){?>
-<div class="notifybox"><?= $err_message ?></div>
+<?php if( isset($success_message) ) { ?>
+<div class="notifybox success"><?= $success_message ?></div>
+<?php } if( isset($error_message) && $error_message !="" ) { ?>
+<div class="notifybox error"><?= $error_message ?></div>
 <?php } ?>
 <form action="" method="post">
 <table class="t1">
 <tr><td>氏名：</td><td><input type="text" name="name" value="<?php if (isset($_POST['do'])) print $_POST['name'];?>"/></td></tr>
 <tr><td>メール：</td><td><input type="text" name="mail" value="<?php if (isset($_POST['do'])) print $_POST['mail'];?>"/></td></tr>				
-<tr><td>ログインID：</td><td><input type="text" name="id" value="<?php if (isset($_POST['do'])) print $_POST['id'];?>"/></td></tr>
-<tr><td>パスワード：</td><td><input type="password" name="pass" value="<?php if (isset($_POST['do'])) print $_POST['pass'];?>"/></td></tr>
+<tr><td>ログインID：</td><td><input type="text" name="id" value="<?php if (isset($_POST['do'])) print $_POST['id'];?>" placeholder="英数字 6-20文字"/></td></tr>
+<tr><td>パスワード：</td><td><input type="password" name="pass" value="<?php if (isset($_POST['do'])) print $_POST['pass'];?>" placeholder="英数字 6-20文字"/></td></tr>
 </table>
 <input type="hidden" name ="do" value="regist" />
 <input type="submit" value="アカウントを作る" />

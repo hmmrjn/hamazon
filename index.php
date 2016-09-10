@@ -60,8 +60,8 @@ $sql_new3 = "SELECT date, id, name, price FROM items ORDER BY date DESC LIMIT 0,
 </div>
 <main class="animated fadeIn">
 <section>
-<h2><i class="fa fa-chevron-right"></i> ベストセラー</h2>
-<div class="items_container">
+<h2>ベストセラー</h2>
+<div class="items-container">
 <?php
 //ベストセラー
 $res_top3 = $mysqli->query($sql_top3);
@@ -71,16 +71,16 @@ $price =  number_format( $item['price'] );
 ?>
 
 <div class="item">
-<div class="item_image">
+<div class="item-image">
 <a href="product/?id=<?= $item['id'] ?>"><img src="images/product<?= $item['id'] ?>.jpg" alt="<?= $item['name'] ?>の画像" height="160px"></a>
 </div>
-<div class="item_name">
+<div class="item-name">
 <?= $item_index ?>. <a href="product/?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
 </div>
-<div class="item_rate">
-<span class="rev_rate" value="<?= $item['avg'] ?>"></span> (<?= $item['avg'] ?>)
+<div class="item-rate">
+<span class="rev-rate" value="<?= $item['avg'] ?>"></span> (<?= $item['avg'] ?>)
 </div>
-<div class="item_price">
+<div class="item-price">
 <font color="darkred">&yen;<?= $price ?></font>
 </div>
 </div>
@@ -90,8 +90,8 @@ $item_index++;
 $res_top3->free_result();
 ?>
 </div>
-<h2><i class="fa fa-chevron-right"></i> 評価の高い商品</h2>
-<div class="items_container">
+<h2>評価の高い商品</h2>
+<div class="items-container">
 <?php
 //評価の高い商品
 $res_best3 = $mysqli->query($sql_best3);
@@ -101,16 +101,16 @@ $price =  number_format( $item['price'] );
 ?>
 
 <div class="item">
-<div class="item_image">
+<div class="item-image">
 <a href="product/?id=<?= $item['id'] ?>"><img src="images/product<?= $item['id'] ?>.jpg" alt="<?= $item['name'] ?>の画像" height="160px"></a>
 </div>
-<div class="item_name">
+<div class="item-name">
 <?= $item_index ?>. <a href="product/?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
 </div>
-<div class="item_rate">
-<span class="rev_rate" value="<?= $item['avg'] ?>"></span> (<?= $item['avg'] ?>)
+<div class="item-rate">
+<span class="rev-rate" value="<?= $item['avg'] ?>"></span> (<?= $item['avg'] ?>)
 </div>
-<div class="item_price">
+<div class="item-price">
 <font color="darkred">&yen;<?= $price ?></font>
 </div>
 </div>
@@ -120,8 +120,8 @@ $item_index++;
 $res_best3->free_result();
 ?>
 </div>
-<h2><i class="fa fa-chevron-right"></i> 新着商品</h2>
-<div class="items_container">
+<h2>新着商品</h2>
+<div class="items-container">
 <?php
 //新着商品
 $res_new3 = $mysqli->query($sql_new3);
@@ -137,19 +137,19 @@ $reg_date = date_format($reg_date, 'Y年 m月 d日');
 ?>
 
 <div class="item">
-<div class="item_image">
+<div class="item-image">
 <a href="product/?id=<?= $item['id'] ?>"><img src="images/product<?= $item['id'] ?>.jpg" alt="<?= $item['name'] ?>の画像" height="160px"></a>
 </div>
-<div class="item_name">
+<div class="item-name">
 <?= $item_index ?>. <a href="product/?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
 </div>
-<div class="item_rate">
-<span class="rev_rate" value="<?= $rate['avg'] ?>"></span> (<?= $rate['avg'] ?>)
+<div class="item-rate">
+<span class="rev-rate" value="<?= $rate['avg'] ?>"></span> (<?= $rate['avg'] ?>)
 </div>
-<div class="item_price">
+<div class="item-price">
 <font color="darkred">&yen;<?= $price ?></font><br/>
 </div>
-<div class="item_date">登録日：<?= $reg_date ?></div>
+<div class="item-date">登録日：<?= $reg_date ?></div>
 </div>
 <?php
 $item_index++;
@@ -161,7 +161,7 @@ $res_new3_eachrate->free_result();
 <div id="all-products-btn-wrapper">
 <a href="/all_products/" class="cntbtn active" id="all-products-btn"><i class="fa fa-th-list"></i>商品一覧</a>
 </div>
-<h2><i class="fa fa-chevron-right"></i> 更新情報</h2>
+<h2>更新情報</h2>
 <?php include 'templates/updates.html'; ?>
 <a href="http://www.mlab.im.dendai.ac.jp/~15fi103/"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;15fi103へ戻る</a>
 </section>
@@ -172,7 +172,7 @@ $res_new3_eachrate->free_result();
 </div>
 </body>
 <script>
-$('.rev_rate').raty({
+$('.rev-rate').raty({
 readOnly: true,
 half:  true,
 path: '/images/',

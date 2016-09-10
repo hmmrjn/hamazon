@@ -19,18 +19,18 @@ if( isset( $_POST['do']) && $_POST['do'] == "login" ){
 		if($user['active'] == 1){
 			$_SESSION['user_id'] = $user['user_id'];
 			$_SESSION['user_name'] = $user['name'];
-			$message = "ログインしました。";
+			$success_message = "ログインしました。";
 
 			//最終ログイン日時を記録
 			$sql = "UPDATE users SET last_login = now() WHERE user_id = '{$esc_id}'";
 			$mysqli->query($sql);
 			header( 'Location: /account/' );
 		}else{
-			$message = "登録完了メールでアカウントを有効化してください。";
+			$alert_message = "登録完了メールでアカウントを有効化してください。";
 		}
 	} else {
 		//ログイン失敗の場合
-		$message = "ログインID、もしくはパスワードが間違っています。";
+		$alert_message = "ログインID、もしくはパスワードが間違っています。";
 	}
 }
 //アカウントの有効化
@@ -39,9 +39,9 @@ if ( isset($_GET['do']) && $_GET['do'] == "activate" && $_POST['do'] != "login")
 		$esc_id = $mysqli->real_escape_string($_GET['id']); //SQLインジェクション対策
 		$sql = "UPDATE users SET active = 1 WHERE user_id = '{$esc_id}'";
 		$res = $mysqli->query($sql);
-		$message = "アカウント登録が完了しました！さっそくログインしよう！";
+		$success_message = "アカウント登録が完了しました！さっそくログインしよう！";
 	} else {
-		$message = "<b>システムエラー</b><br/>アカウント登録を完了できませんでした。<br/>運営までお問い合わせください。";
+		$error_message = "<b>システムエラー</b><br/>アカウント登録を完了できませんでした。<br/>運営までお問い合わせください。";
 	}
 }
 //ログインのID再入力を省く
@@ -87,9 +87,12 @@ if( isset($_GET['id']) ) $login_id = $_GET['id'];
 </div>
 <main class="animated fadeIn">
 <section>
-<?php if( isset($message) ) { ?>
-<div class="notifybox"><?= $message ?></div>
-<br/><br/>
+<?php if( isset($success_message) ) { ?>
+<div class="notifybox success"><?= $success_message ?></div>
+<?php } if( isset($alert_message) ) { ?>
+<div class="notifybox alert"><?= $alert_message ?></div>
+<?php } if( isset($error_message) ) { ?>
+<div class="notifybox error"><?= $error_message ?></div>
 <?php } ?>
 <form action="" method="post">
 <table class="t1">				

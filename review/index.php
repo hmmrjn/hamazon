@@ -118,7 +118,7 @@ if( isset($_GET['do']) && $_GET['do']=="edit" && $correct_user){
 <input type="submit" value="保存"/>
 </form>
 <?php } elseif($r_exists) { ?>
-<span class="rev_rate" data-score="<?= $r_rate ?>"></span>
+<span class="rev-rate" data-score="<?= $r_rate ?>"></span>
 <b><?= h($r_title) ?></b><br/>
 <?= h($r_content) ?><br/>
 <?php if($r_user_id=='') $user_id = "(未ログインユーザ)";
@@ -139,12 +139,12 @@ print "<br/><br/><a href=\"/review/?do=edit&r_id={$_GET['r_id']}\" class=\"cntbt
 input[type="text"] {
 margin: 10px 0;
 }
-.rev_rate{
+.rev-rate{
 margin-right: 10px;
 }
 </style>
 <script>
-$('.rev_rate').raty({
+$('.rev-rate').raty({
 readOnly: true,
 half:  true,
 path: '/images/',

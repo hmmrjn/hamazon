@@ -177,7 +177,7 @@ if($orders_res->num_rows == 0){ ?>
 <?php while($review = $reviews_res->fetch_array()){ ?>
 <tr>
 <td><a href="/product/?id=<?= $review['id'] ?>"><?= $review['name'] ?></a></td>
-<td><span class="rev_rate" data-score="<?= $review['rate'] ?>"></span></td>
+<td><span class="rev-rate" data-score="<?= $review['rate'] ?>"></span></td>
 <td><a href="/review/?do=edit&r_id=<?= $review['review_id'] ?>">編集</a></td>
 </tr>
 <?php } 
@@ -190,7 +190,7 @@ if($reviews_res->num_rows == 0){ ?><td colspan="4" style="text-align:left">ま�
 </div>
 </body>
 <script>
-$('.rev_rate').raty({
+$('.rev-rate').raty({
 readOnly: true,
 half: true,
 path: '/images/',

@@ -133,7 +133,7 @@ $reviews_res = $mysqli->query($reviews_sql);
 <img id="photo-opener" src="/images/product<?= $_GET['id'] ?>.jpg" width="250px"><i class="fa fa-search-plus"></i></div><em class="small">画像をクリックして拡大イメージを表示</em>
 </div>
 <em class="big"><b><?= $item['name'] ?></b></em><br>
-<?= $item['date'] ?><br><span class="rev_rate" data-score="<?= $avg[0] ?>"></span><?= $count[0] ?>件のカスタマーレビュー<hr>
+<?= $item['date'] ?><br><span class="rev-rate" data-score="<?= $avg[0] ?>"></span><?= $count[0] ?>件のカスタマーレビュー<hr>
 <em class="darkred"><em class="big"><b>&yen;&nbsp;<?= $price ?></b></em>(税別)</em>
 <b>通常配送無料</b></em><br>
 <em class="green"><b><?= $item['stock'] ?>点</b>在庫有り。</em><br>
@@ -156,7 +156,7 @@ print "星$i <div class=\"progressbar\" value=\"$arc[$i]\"></div> ($arc[$i])<br>
 <hr/>
 <?php
 while ($review = $reviews_res->fetch_array()) { ?>
-<span class="rev_rate" data-score="<?= $review['rate'] ?>"></span>
+<span class="rev-rate" data-score="<?= $review['rate'] ?>"></span>
 <b><?= h($review['title']) ?></b><br/>
 <?= h($review['content']) ?><br/>
 <?php if($review['user_id']=='') $user_id = "(未ログインユーザ)";
@@ -228,7 +228,7 @@ max: <?= $count[0] ?>
 });
 </script>
 <style>
-.rev_rate{
+.rev-rate{
 margin-right: 10px;
 }
 </style>
