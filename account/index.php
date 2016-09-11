@@ -95,7 +95,7 @@ $orders_res = $mysqli->query($orders_sql);
 </header>
 <div id="container">
 <div class="banner">
-<p class="animated fadeInRight" id="title">Hamazonアカウント</p>
+<p class="animated bounce" id="title">Hamazonアカウント</p>
 </div>
 <main class="animated fadeIn">
 <section>

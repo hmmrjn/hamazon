@@ -114,7 +114,7 @@ if( isset($_GET['id']) ) $login_id = $_GET['id'];
 </header>
 <div id="container">
 <div class="banner">
-<p class="animated fadeInRight" id="title">パスワードのリセット</p>
+<p class="animated tada" id="title">パスワードのリセット</p>
 </div>
 <main class="animated fadeIn">
 <section>

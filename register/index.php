@@ -112,7 +112,7 @@ _EOT_;
 </header>
 <div id="container">
 <div class="banner">
-<p class="animated fadeInRight" id="title">アカウント登録</p>
+<p class="animated bounce" id="title">アカウント登録</p>
 </div>
 <main class="animated fadeIn">
 <section>

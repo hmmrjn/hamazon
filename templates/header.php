@@ -37,7 +37,7 @@ $items_number = (isset($_SESSION['cart']))? count($_SESSION['cart']) : 0;
 <i class="fa fa-shopping-cart"></i> カート<div class="items-number"><?= $items_number ?>
 </div></div></a></li>
 <?php if( isset($_SESSION['user_id']) && $_SESSION['user_id'] != "" ){ ?>
-<li><a href="#"><div><?= $_SESSION['user_id'] ?></div>
+<li><a href="/account/"><div><?= $_SESSION['user_id'] ?></div>
 <li id="nav-register"><a href="?do=logout"><div>ログアウト</div></a></li>
 <?php } else { ?>
 <li id="nav-register"><a href="/register/"><div>アカウント登録</div></a></li>

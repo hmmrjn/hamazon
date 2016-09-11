@@ -84,7 +84,7 @@ if( isset($_GET['id']) ) $login_id = $_GET['id'];
 </header>
 <div id="container">
 <div class="banner">
-<p class="animated fadeInRight" id="title">ログイン</p>
+<p class="animated bounce" id="title">ログイン</p>
 </div>
 <main class="animated fadeIn">
 <section>
