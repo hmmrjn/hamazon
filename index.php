@@ -21,6 +21,7 @@ $sql_new3 = "SELECT date, id, name, price FROM items ORDER BY date DESC LIMIT 0,
 <html lang="ja">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
 <title>Hamazon | 通販 - ファッション、家電から食品まで</title>
 <link rel="shortcut icon" href="images/icon.ico">
 <link rel="stylesheet" href="common/normalize.css">

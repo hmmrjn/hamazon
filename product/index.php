@@ -78,6 +78,7 @@ $reviews_res = $mysqli->query($reviews_sql);
 <html lang="ja">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
 <title><?= $item['name'] ?> - Hamazon | 通販</title>
 <link rel="shortcut icon" href="/images/icon.ico">
 <link rel="stylesheet" href="/common/normalize.css">
@@ -111,8 +112,25 @@ $reviews_res = $mysqli->query($reviews_sql);
 <div id="container">
 <main class="animated fadeIn">
 <section>
-<div class="box rightbox">
-<em class="big">&yen;&nbsp;<?= $price ?></em>(税別)<br>
+<div class="flexbox-wrapper">
+<div class="left-box">
+<div id="thumbnail-box">
+<div id ="thumbnail-box-inner">
+<img id="photo-opener" src="/images/product<?= $_GET['id'] ?>.jpg"><i class="fa fa-search-plus"></i></div>
+</div>
+</div>
+<div class="main-box">
+<em class="big"><b><?= $item['name'] ?></b></em><br>
+<?= $item['date'] ?><br><span class="rev-rate" data-score="<?= $avg[0] ?>"></span><?= $count[0] ?>件のカスタマーレビュー<hr>
+<em class="darkred"><em class="big"><b>&yen;&nbsp;<?= $price ?></b></em> (税別)</em>
+<b>通常配送無料</b></em><br>
+<em class="green"><b><?= $item['stock'] ?>点</b>在庫有り。</em><br>
+この商品は、Hamazonが販売、発送します。<br>
+ギフトラッピングは利用できません。
+</div>
+<div class="right-box">
+<div class="box graybox">
+<em class="big">&yen;&nbsp;<?= $price ?></em> (税別)<br>
 <em class="small">ポイント:<?php if($item['price']/100>10000) { print("100"); } else { print($item['price']/100); } ?>&nbsp;pt</em><br><br>
 <form action="/cart/" method="get">
 <input type="hidden" name="do" value="add"/>
@@ -125,21 +143,8 @@ $reviews_res = $mysqli->query($reviews_sql);
 </select>
 <input type="submit" value="カートに入れる" />
 </form>
-</a>
 </div>
-<div class="leftbox">
-<div id="thumbnail-box">
-<div id ="thumbnail-box-inner">
-<img id="photo-opener" src="/images/product<?= $_GET['id'] ?>.jpg" width="250px"><i class="fa fa-search-plus"></i></div><em class="small">画像をクリックして拡大イメージを表示</em>
-</div>
-<em class="big"><b><?= $item['name'] ?></b></em><br>
-<?= $item['date'] ?><br><span class="rev-rate" data-score="<?= $avg[0] ?>"></span><?= $count[0] ?>件のカスタマーレビュー<hr>
-<em class="darkred"><em class="big"><b>&yen;&nbsp;<?= $price ?></b></em>(税別)</em>
-<b>通常配送無料</b></em><br>
-<em class="green"><b><?= $item['stock'] ?>点</b>在庫有り。</em><br>
-この商品は、Hamazonが販売、発送します。<br>
-ギフトラッピングは利用できません。<br>
-</a>
+  </div>
 </div>
 </section>
 <section>
@@ -148,10 +153,10 @@ $reviews_res = $mysqli->query($reviews_sql);
 </section>
 <section>
 <h2>カスタマーレビュー(<?= $count[0] ?>件)</h2>
-<div id="ratings-left-box">
-<?php for($i=5; $i>=1; $i--){
-print "星$i <div class=\"progressbar\" value=\"$arc[$i]\"></div> ($arc[$i])<br>\n";
-} ?>
+<div id="rating-bars">
+<?php for($i=5; $i>=1; $i--){ ?>
+星<?= $i ?> <div class="progressbar" value="<?= $arc[$i] ?>"></div> (<?= $arc[$i] ?>)<br>
+<?php } ?>
 </div>
 <hr/>
 <?php

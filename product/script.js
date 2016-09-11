@@ -1,11 +1,4 @@
 $(function() {
-//写真がhoverされたとき
-$('#photo-opener').hover(function(){
-  $(this).fadeTo("fast", 0.7);
-},
-function(){
-  $(this).fadeTo("fast", 1);
-});
 
 $( ".photo" ).dialog({
   autoOpen: false,
