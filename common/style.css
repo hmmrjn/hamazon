@@ -68,6 +68,30 @@ hr {
 	border-bottom: none;
 }
 
+/*FLEXBOXESS*/
+
+.flexbox-wrapper {
+	display: flex; 
+	flex-flow: row wrap;
+}
+.flexbox-wrapper > * {
+	flex: 1 100%;
+}
+.flexbox-wrapper img {
+	max-width: 100%;
+}
+.main-box {
+	margin: 15px 0;
+}
+@media all and (min-width: 800px) {
+	.left-box { flex: 1.4; }
+	.right-box { flex: 1; }
+	.main-box { flex: 2; }
+	.left-box { order: 1; } 
+	.main-box { order: 2; margin: 0 15px; }
+	.right-box { order: 3; }
+}
+
 /*===================================================
 ヘッダー
 ===================================================*/
@@ -90,14 +114,15 @@ header {
 	padding: 5px 22px;
 }
 .searchBox {
-	float: left;
-	margin-left: 38px;
-	margin-top: 13px;
 	position: relative;
+	box-sizing:border-box;
+	margin-top: 0;
+	width: 100%;
 }
 .searchBox input[type="text"] {
-	padding: 5px 10px;
-	width: 240px;
+	box-sizing:border-box;
+	padding: 5px;
+	width: 100%;
 	background: whitesmoke;
 }
 .searchBox input[type="text"]:focus {
@@ -142,6 +167,87 @@ nav .selected div {
 	margin: 0 6px;
 	padding: 4px 6px;
 	border-radius: 4px;
+}
+
+.header-logo {
+	flex: 0 auto;
+}
+.header-menu {
+	flex: 1 auto;
+}
+.header-search {
+	flex: 1 100%;
+}
+.header-logo {
+	order: 1;
+}
+.header-menu {
+	order: 2;
+}
+.header-search {
+	order: 3;
+}
+#textlogo,
+#nav-register {
+	display: none;
+}
+header ul {
+	-webkit-padding-start: 0;
+}
+header {
+	height: 100px;
+}
+
+/* 中スクリーン */
+@media all and (min-width: 649px) {
+	.header-logo {
+		flex 0 auto;
+		min-width: 160px;
+	}
+	.header-search {
+		flex 1 100%;
+	}
+	.header-menu {
+		flex: 1 auto;
+	}
+	#textlogo,
+	#nav-register {
+		display: inline-block;
+	}
+}
+
+/* 大スクリーン */
+@media all and (min-width: 900px) {
+	.header-logo {
+		min-width: 200px;
+	}
+	.header-menu {
+		min-width: 390px;
+	}
+	.header-logo {
+		flex: 0;
+	}
+	.header-menu {
+		flex: 0;
+	}
+	.header-search {
+		flex: 1;
+	}
+	.header-logo {
+		order: 1;
+	}
+	.header-search {
+		order: 2;
+	}
+	.header-menu {
+		order: 3;
+	}
+	header {
+		height: 60px;
+	}
+	.searchBox {
+		margin-top: 15px;
+	}
 }
 
 /*===================================================
@@ -303,30 +409,6 @@ h2 {
 		float: none;
 		width: 100%;
 	}
-}
-
-/*FLEXBOXESS*/
-
-.flexbox-wrapper {
-	display: flex; 
-	flex-flow: row wrap;
-}
-.flexbox-wrapper > * {
-	flex: 1 100%;
-}
-.flexbox-wrapper img {
-	max-width: 100%;
-}
-.main-box {
-	margin: 15px 0;
-}
-@media all and (min-width: 800px) {
-	.left-box { flex: 1.4; }
-	.right-box { flex: 1; }
-	.main-box { flex: 2; }
-	.left-box { order: 1; } 
-	.main-box { order: 2; margin: 0 15px; }
-	.right-box { order: 3; }
 }
 
 /*アイテム*/

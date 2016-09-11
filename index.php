@@ -54,8 +54,7 @@ $sql_new3 = "SELECT date, id, name, price FROM items ORDER BY date DESC LIMIT 0,
 <div id="container">
 <div class="large-banner">
 <div id="large-banner-content">
-<p class="animated fadeInUp">Hamazonでは通販をリアリスティックに疑似体験できます。<br/>
-実際にアカウント登録したり、レビューを投稿できるよ。</p>
+<p class="animated fadeInUp">Hamazonでは<br/>通販を疑似体験できます</p>
 <a href="/all_products/" class="cntbtn active" id="all-products-btn"><i class="fa fa-th-list"></i>商品一覧</a>
 </div>
 </div>
