@@ -99,7 +99,7 @@ hr {
 header {
 	background: white;
 	margin-bottom: 20px;
-	padding: 5px 15px;
+	padding: 5px 10px;
 	height: 60px;
 	/*box-shadow: 0 0 10px gray;*/
 	box-shadow: 0 0 1px rgba(0,0,0,.15);
@@ -145,7 +145,7 @@ nav {
 nav li {
 	float: left;
 	list-style: none;
-	padding: 5px 20px;
+	padding: 5px 16px;
 	/*border-left: 1px solid #808080;*/
 }
 nav li:first-child {
