@@ -419,7 +419,10 @@ h2 {
 	overflow-x: scroll;
 	overflow-y: hidden;
 	white-space: nowrap;
+	/*iOSでの横スクロールをスムーズ（慣性スクロール）に*/
+	-webkit-overflow-scrolling: touch;
 }
+/*スクロールバーのカスタマイズ*/
 .items-container::-webkit-scrollbar-track {
 	background-color: rgba(0,0,0,0);
 }
