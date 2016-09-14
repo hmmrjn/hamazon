@@ -9,7 +9,7 @@
 888    888     "88b 888 "888 "88b     "88b    d88P  d88""88b 888 "88b
 888    888 .d888888 888  888  888 .d888888   d88P   888  888 888  888
 888    888 888  888 888  888  888 888  888  d88P    Y88..88P 888  888
-888    888 "Y888888 888  888  888 "Y888888 88888888  "Y88P"  888  888 Ver3.0.15.08.10
+888    888 "Y888888 888  888  888 "Y888888 88888888  "Y88P"  888  888
 
 (c) Copyright 2015 Hamazon co. Ltd. Some rights reserved.
 
@@ -605,13 +605,13 @@ footer {
 	padding: 8px 24px;
 	color: white;
 	text-decoration: none;
-	background-color: #55acee;
+	background-color: rgb(75, 190, 110);
 	display: inline-block;
-	opacity: 0.8;
+	opacity: 1;
 	border-radius: 4px;
 }
 .btn:hover {
-	opacity: 1;
+	opacity: 0.8;
 }
 #github-btn{
 	background-color: black;
@@ -619,7 +619,18 @@ footer {
 .btn i {
 	margin-right: 8px;
 }
-
+@media screen and (max-width: 649px){
+	.extra-label {
+		display: none;
+	}
+	.btn i {
+		margin-right: 0px;
+	}
+	footer ul {
+		-webkit-padding-start: 0;
+		margin-left: 8px;
+	}
+}
 /* カウンターと法的表明（） */
 
 #counter {
@@ -630,7 +641,7 @@ footer {
 	font-size: 12px;
 }
 #legal a {
-	color: deepskyblue;
+	color: #333;
 }
 .float {
 	position: absolute;
