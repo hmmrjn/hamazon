@@ -35,7 +35,7 @@ $site_url/login/forgot_password.php?do=reset&id={$user['user_id']}&key=$key
 $site_name
 $site_url
 _EOT_;
-			mail($_POST['mail'], $subject, $body, $headers);
+			mail($user['mail'], $subject, $body, $headers);
 			//example_address@mail.com → ex****@mail.com
 			$hidden_mail = substr($user['mail'], 0, 2).'****';
 			$hidden_mail .= substr($user['mail'], strpos($user['mail'], "@"));
