@@ -389,6 +389,7 @@ h2 {
 	border: 1px solid gainsboro;
 	border-radius: 6px;
 	padding: 10px 15px;
+	margin-bottom: 10px;
 	box-sizing: border-box;
 }
 .rightbox {
@@ -404,7 +405,7 @@ h2 {
 .graybox {
 	background-color: whitesmoke;
 }
-@media screen and (max-width: 649px){
+@media screen and (max-width: 800px){
 	.box {
 		float: none;
 		width: 100%;

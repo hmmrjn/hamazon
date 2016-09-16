@@ -100,7 +100,33 @@ function cart_empty(){
 	</header>
 	<div id="container">
 		<main class="animated fadeIn">
-			<div class="box rightbox">
+		<div class="box leftbox">
+			<h2><i class="fa fa-shopping-cart"></i>&nbsp;カート</h2>
+<?php
+if(isset($message)) print $message;
+if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0){
+?>
+			<table class="t1">
+				<tr>
+					<th>商品</th>
+					<th>金額</th>
+					<th>数量</th>
+					<th>削除</th>
+				</tr>
+				<?php 
+				foreach ( $_SESSION['cart'] as $cart_item ){ ?>
+				<tr>
+					<td><?= $cart_item['name'] ."&nbsp" ?></td>
+					<td>&yen;<?= $cart_item['price'] ."&nbsp" ?></td>
+					<td><?= $cart_item['quantity'] ."個" ?></td>
+					<td><a href="/cart/?do=remove&p=<?= $cart_item['id'] ?>">削除</a></td>
+				</tr>
+				<?php } ?>
+			</table>
+<?php } else { ?>			ただいまカートは空です。
+<?php } ?>
+		</div>
+		<div class="box rightbox">
 				<h2>支払金額</h2>
 				<table class="t2">
 					<tr>
@@ -141,27 +167,6 @@ function cart_empty(){
 					<?php } ?>
 				</form>
 			</a>
-		</div>
-		<div class="box leftbox">
-			<h2><i class="fa fa-shopping-cart"></i>&nbsp;カート</h2>
-			<?= $message ?> 
-			<table class="t1">
-				<tr>
-					<th>商品</th>
-					<th>金額</th>
-					<th>数量</th>
-					<th>削除</th>
-				</tr>
-				<?php 
-				foreach ( $_SESSION['cart'] as $cart_item ){ ?>
-				<tr>
-					<td><?= $cart_item['name'] ."&nbsp" ?></td>
-					<td>&yen;<?= $cart_item['price'] ."&nbsp" ?></td>
-					<td><?= $cart_item['quantity'] ."個" ?></td>
-					<td><a href="/cart/?do=remove&p=<?= $cart_item['id'] ?>">削除</a></td>
-				</tr>
-				<?php } ?>
-			</table>
 		</div>
 		<section>
 			<p>商品価格や在庫状況は変更される場合があります。カートに追加した時と在庫状況や価格が異なることがあります。カート内で表示されている価格は最新の価格となります。</p>
