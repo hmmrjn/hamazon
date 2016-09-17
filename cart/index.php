@@ -45,15 +45,17 @@ if( $_GET['do'] == "remove"){
 	}
 	$_SESSION['cart'] = array_merge($_SESSION['cart']);
 }
-//合計金額を計算
-$total_price = 0; 
+//小計金額を計算
+$subtotal_price = 0; 
 foreach ( $_SESSION['cart'] as $cart_item ){ 
-	$total_price += $cart_item['price'] * $cart_item['quantity']; 
+	$subtotal_price += $cart_item['price'] * $cart_item['quantity']; 
 }
+//消費税を計算
+$tax_price = round($subtotal_price * 0.08);
 //注文を記録する
 if( $_GET['do'] == "order" && !cart_empty() ) {
 	$sql = "INSERT INTO orders (user_id, date, total_price)";
-	$sql .= "VALUES ('".$_SESSION['user_id']."', now(), '".$total_price."' ) ";
+	$sql .= "VALUES ('".$_SESSION['user_id']."', now(), '".$subtotal_price."' ) ";
 	$mysqli->query($sql);
 	$order_id =  $mysqli->insert_id;
 	foreach ($_SESSION['cart'] as $cart_item) {
@@ -113,11 +115,13 @@ if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0){
 					<th>数量</th>
 					<th>削除</th>
 				</tr>
-				<?php 
-				foreach ( $_SESSION['cart'] as $cart_item ){ ?>
+<?php
+foreach ( $_SESSION['cart'] as $cart_item ){ 
+$price =  number_format( $cart_item['price'] );
+?>
 				<tr>
 					<td><?= $cart_item['name'] ."&nbsp" ?></td>
-					<td>&yen;<?= $cart_item['price'] ."&nbsp" ?></td>
+					<td>&yen;<?= $price ."&nbsp" ?></td>
 					<td><?= $cart_item['quantity'] ."個" ?></td>
 					<td><a href="/cart/?do=remove&p=<?= $cart_item['id'] ?>">削除</a></td>
 				</tr>
@@ -131,11 +135,11 @@ if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0){
 				<table class="t2">
 					<tr>
 						<td>商品：</td>
-						<td>&yen;&nbsp;<?= $total_price ?></td>
+						<td>&yen;&nbsp;<?= number_format($subtotal_price) ?></td>
 					</tr>
 					<tr>
 						<td>消費税：</td>
-						<td>&yen;&nbsp;<?= $total_price*0.08 ?></td>
+						<td>&yen;&nbsp;<?= number_format($tax_price) ?></td>
 					</tr>
 					<tr>
 						<td>送料：</td>
@@ -152,7 +156,7 @@ if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0){
 					</tr>
 					<tr>
 						<td class="t2"><b>合計：</b></td>
-						<td class="t2"><b>&yen;&nbsp;<?= $total_price*1.08 ?></b></td>
+						<td class="t2"><b>&yen;&nbsp;<?= number_format($subtotal_price+$tax_price) ?></b></td>
 					</tr>
 				</table>
 				<form action="" method="get" style="text-align: center;">
