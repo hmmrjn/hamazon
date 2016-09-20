@@ -128,6 +128,7 @@ header {
 .searchBox input[type="text"]:focus {
 	background: white;
 }
+/*虫眼鏡のアイコン*/
 .searchBox button {
 	padding: 0;
 	border: none;
@@ -135,7 +136,7 @@ header {
 	color: gray;
 	position: absolute;
 	right: 10px;
-	top: 8px;
+	top: 6px;
 }
 nav {
 	float: right;

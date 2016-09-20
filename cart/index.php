@@ -127,7 +127,8 @@ $price =  number_format( $cart_item['price'] );
 				</tr>
 				<?php } ?>
 			</table>
-<?php } else { ?>			ただいまカートは空です。
+<?php } else { ?>
+			ただいまカートは空です。
 <?php } ?>
 		</div>
 		<div class="box rightbox">
