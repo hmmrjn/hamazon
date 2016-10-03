@@ -22,6 +22,9 @@ SET time_zone = "+00:00";
 -- Database: `hamazon`
 --
 
+ CREATE DATABASE IF NOT EXISTS hamazon;
+ USE hamazon;
+
 -- --------------------------------------------------------
 
 --
