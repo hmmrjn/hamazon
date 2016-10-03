@@ -75,6 +75,7 @@ function cart_empty(){
 <html lang="ja">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
 	<title>カート - Hamazon | 通販 - ファッション、家電から食品まで</title>
 	<link rel="shortcut icon" href="/images/icon.ico">
 	<link rel="stylesheet" href="/common/normalize.css">
@@ -131,7 +132,7 @@ $price =  number_format( $cart_item['price'] );
 			ただいまカートは空です。
 <?php } ?>
 		</div>
-		<div class="box rightbox">
+		<div class="box rightbox cart-rigth-panel">
 				<h2>支払金額</h2>
 				<table class="t2">
 					<tr>

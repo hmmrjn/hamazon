@@ -490,7 +490,10 @@ table.t1 td {
 	padding: 10px 10px;
 }
 table.t2 {
-	width: 180px;
+	width: 90%;
+}
+.cart-rigth-panel {
+	min-width: 240px;
 }
 table.t2 td {
 	font-size: 14px;
