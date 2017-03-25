@@ -15,6 +15,8 @@ $(function() {
 				var keywords = acData.term.split(' ').join('|');
 				me.html(me.text().replace(new RegExp("(" + keywords + ")", "gi"), '<b>$1</b>'));
 			});
+			//iPhoneでダブルタップしないといけない問題を解消
+			 $('.ui-autocomplete').off('menufocus hover mouseover mouseenter');
 		}
 	});
 });
