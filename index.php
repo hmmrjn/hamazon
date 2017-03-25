@@ -20,7 +20,7 @@ $sql_new3 = "SELECT date, id, name, price FROM items ORDER BY date DESC LIMIT 0,
 <!Doctype html>
 <html lang="ja">
 <head>
-<?php include "/templates/head.php"; ?>
+<?php include "templates/head.php"; ?>
 </head>
 <!--
 
