@@ -58,16 +58,17 @@ while ($rc = $res->fetch_array()){ //rc: rates count
 }
 $res->free_result();
 
-//投稿のページ分け
+//投稿のページング
 $posts_by_page = 4;
-if (isset($_GET['page'])) $current_page = $_GET['page'];
-else $current_page = 1;
-$start_point = $posts_by_page * ($current_page - 1);
+if (isset($_GET['page'])) $curr_page = $_GET['page'];
+else $curr_page = 1;
+$start_point = $posts_by_page * ($curr_page - 1);
 $sql = "SELECT COUNT(*) FROM reviews WHERE item_id = '{$esc_id}'";
 $res = $mysqli->query($sql);
-$count = $res->fetch_array();
+$posts_num = array_values($res->fetch_array())[0];
 $res->free_result();
-$all_pages = ($count[0] - 1) / $posts_by_page + 1;
+$pages_num = ($posts_num - 1) / $posts_by_page + 1;
+$pages_num = floor($pages_num);
 
 //レビューの取得
 $reviews_sql = "SELECT * FROM reviews WHERE item_id = '{$esc_id}' ORDER BY review_id DESC LIMIT " . $start_point . ", $posts_by_page";
@@ -111,7 +112,7 @@ include "../templates/head.php"; ?>
 </div>
 <div class="main-box">
 <em class="big"><b><?= $item['name'] ?></b></em><br>
-<?= $item['date'] ?><br><span class="rev-rate" data-score="<?= $avg[0] ?>"></span><?= $count[0] ?>件のカスタマーレビュー<hr>
+<?= $item['date'] ?><br><span class="rev-rate" data-score="<?= $avg[0] ?>"></span><?= $posts_num ?>件のカスタマーレビュー<hr>
 <em class="darkred"><em class="big"><b>&yen;&nbsp;<?= $price ?></b></em> (税別)</em>
 <b>通常配送無料</b></em><br>
 <em class="green"><b><?= $item['stock'] ?>点</b>在庫有り。</em><br>
@@ -142,7 +143,7 @@ include "../templates/head.php"; ?>
 <?= $item['details'] ?>
 </section>
 <section>
-<h2>カスタマーレビュー(<?= $count[0] ?>件)</h2>
+<h2>カスタマーレビュー (<?= $posts_num ?>件)</h2>
 <div id="rating-bars">
 <?php for($i=5; $i>=1; $i--){ ?>
 星<?= $i ?> <div class="progressbar" value="<?= $arc[$i] ?>"></div> (<?= $arc[$i] ?>)<br>
@@ -156,40 +157,37 @@ while ($review = $reviews_res->fetch_array()) { ?>
 <?= h($review['content']) ?><br/>
 <?php if($review['user_id']=='') $user_id = "(未ログインユーザ)";
 else $user_id = h($review['user_id']);
-print( $user_id . "&nbsp&nbsp" . $review['date']); 
+print( $user_id . "&nbsp;&nbsp;" . $review['date']);
 if(isset($_SESSION['user_id']) && $review['user_id'] == $_SESSION['user_id']) {
 print " <a href=\"/review/?do=edit&r_id={$review['review_id']}\">編集</a>";
 }
-?>
-<hr/>
+?><hr/>
 <?php
 }
 $reviews_res->free_result();
 
-//ページ番号の表示
-print("ページ:");
-if ($current_page != 1) {
-?>
-&nbsp;&nbsp;<a href="?id=<?= $_GET['id'] ?>&page=<?= $current_page - 1 ?>">&lt;</a>
-<?php
-} else {
-print("&nbsp&nbsp&nbsp&lt&nbsp");
-}
-for ($i = 1; $i <= $all_pages; $i++) {
-if ($i == $current_page)
-print("&nbsp&nbsp" . $i . "&nbsp&nbsp");
-else
-print("&nbsp&nbsp<a href=\"?id=" . $_GET['id'] . "&page=" . $i . "\">" . $i . "</a>&nbsp&nbsp");
-}
-if ($current_page <= $all_pages - 1) {
-?>
-&nbsp;&nbsp;<a href="?id=<?= $_GET['id'] ?>&page=<?= $current_page + 1 ?>">&gt;</a>
-<?php
-} else {
-print("&nbsp&nbsp&gt");
+
+//ページングの表示
+if($posts_num>$posts_by_page){
+	?><div class="pagination"><?php
+	if ($curr_page != 1) {
+		?><a class="pagination-btn" href="?id=<?= $_GET['id'] ?>&page=<?= $curr_page - 1 ?>">prev</a><?php
+	}
+	for ($i = 1; $i <= $pages_num; $i++) {
+		if ($i == $curr_page){
+			?><span class="pagination-btn selected"><?= $i ?></span><?php
+		} else {
+			?><a class="pagination-btn" href="?id=<?= $_GET['id'] ?>&page=<?= $i ?>"><?= $i ?></a><?php
+		}
+	}
+	if ($curr_page != $pages_num) {
+		?><a class="pagination-btn" href="?id=<?= $_GET['id'] ?>&page=<?= $curr_page + 1 ?>">next</a><?php
+	}
+?></div>
+<hr><?php
 }
 ?>
-<hr>
+
 <h2>レビューを投稿</h2>
 <div class="review-form">
 <form action="" method="post">
@@ -218,7 +216,7 @@ var $self = $(this);
 var $selfVal = parseInt($(this).attr('value'));
 $self.progressbar({
 value: $selfVal,
-max: <?= $count[0] ?>
+max: <?= $posts_num ?>
 });
 });
 </script>

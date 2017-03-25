@@ -583,6 +583,28 @@ input[type="submit"]:hover {
 	padding-right: 20px;
 }
 
+/*ページング*/
+.pagination-btn {
+	background: whitesmoke;
+	border-radius: 4px;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, .3);
+	color: gray;
+	display: inline-block;
+	margin: 3px 6px;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: .3s;
+}
+.pagination-btn:hover{
+	background: #4bbe6e;
+	color: white;
+}
+.pagination-btn.selected {
+	background: gray;
+	box-shadow: inset 0px 0px 5px rgba(0, 0, 0, .3);
+	color: white;
+}
+
 /*===================================================
 入力欄
 ===================================================*/
