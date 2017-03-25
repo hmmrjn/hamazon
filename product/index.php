@@ -77,19 +77,9 @@ $reviews_res = $mysqli->query($reviews_sql);
 <!Doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title><?= $item['name'] ?> - Hamazon | 通販</title>
-<link rel="shortcut icon" href="/images/icon.ico">
-<link rel="stylesheet" href="/common/normalize.css">
-<link rel="stylesheet" href="/common/animate.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="/common/style.css">
+<?php $page_title = $item['name'] . " | Hamazon";
+include "../templates/head.php"; ?>
 <link rel="stylesheet" href="stylesheet.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="/common/jquery.raty.js"></script>
 </head>
 <!--
 
@@ -100,9 +90,9 @@ $reviews_res = $mysqli->query($reviews_sql);
 888    888     "88b 888 "888 "88b     "88b    d88P  d88""88b 888 "88b
 888    888 .d888888 888  888  888 .d888888   d88P   888  888 888  888
 888    888 888  888 888  888  888 888  888  d88P    Y88..88P 888  888
-888    888 "Y888888 888  888  888 "Y888888 88888888  "Y88P"  888  888 4beta.2.160329
--->
+888    888 "Y888888 888  888  888 "Y888888 88888888  "Y88P"  888  888
 
+-->
 <body>
 <header>
 <div class="container">

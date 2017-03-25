@@ -20,16 +20,7 @@ $sql_new3 = "SELECT date, id, name, price FROM items ORDER BY date DESC LIMIT 0,
 <!Doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>Hamazon | 通販 - ファッション、家電から食品まで</title>
-<link rel="shortcut icon" href="images/icon.ico">
-<link rel="stylesheet" href="common/normalize.css">
-<link rel="stylesheet" href="common/style.css">
-<link rel="stylesheet" href="common/animate.css">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="/common/jquery.raty.js"></script>
+<?php include "/templates/head.php"; ?>
 </head>
 <!--
 
@@ -48,7 +39,8 @@ $sql_new3 = "SELECT date, id, name, price FROM items ORDER BY date DESC LIMIT 0,
 <body>
 <header>
 <div class="container">
-<?php $currentPage='home'; include 'templates/header.php' ?>
+<?php $currentPage='home';
+include 'templates/header.php' ?>
 </div>
 </header>
 <div id="container">

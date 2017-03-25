@@ -138,6 +138,23 @@ header {
 	right: 10px;
 	top: 6px;
 }
+
+/* 検索バーの検索候補 */
+.ui-widget-content {
+	background: white !important;
+	border-radius: 4px !important;
+	color: dimgray !important;
+	font-size: 15px;
+}
+.ui-state-focus {
+	margin: 300px;
+	border:0px solid rgba(0, 0, 0, 0) !important;
+	background: #4bbe6e !important;
+	border-radius: 2px !important;
+	font-weight: normal!important;
+	color: white !important;
+}
+
 nav {
 	float: right;
 	color: #808080;

@@ -1,4 +1,3 @@
-<meta charset="utf-8">
 <?php
 //ログアウト処理
 if( isset($_GET['do']) && $_GET['do'] == "logout" ){
@@ -25,7 +24,7 @@ $items_number = (isset($_SESSION['cart']))? count($_SESSION['cart']) : 0;
 <div class="header-search">
 <div class="searchBox">
 <form action="/search/" method="GET">
-<input type="text" name="word" placeholder="商品名を検索" <?php if(isset($_GET['word'])) print("value=\"{$_GET['word']}\""); ?> />
+<input id="search-bar" type="text" name="word" placeholder="商品名を検索" <?php if(isset($_GET['word'])) print("value=\"{$_GET['word']}\""); ?> />
 <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 </div>

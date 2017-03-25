@@ -72,16 +72,8 @@ if( isset($_GET['do']) && $_GET['do']=="edit" && $r_exists ){
 <!Doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<title>Hamazon | 通販 - ファッション、家電から食品まで</title>
-<link rel="shortcut icon" href="/images/icon.ico">
-<link rel="stylesheet" href="/common/normalize.css">
-<link rel="stylesheet" href="/common/animate.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/common/style.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<?php include "../templates/head.php"; ?>
 </head>
-<script src="/common/jquery.raty.js"></script>
 <!--
 
 888    888
@@ -112,7 +104,7 @@ if( isset($_GET['do']) && $_GET['do']=="edit" && $correct_user){
 <form action="/review/?r_id=<?= $_GET['r_id'] ?>" method="post">
 <div id="rating" value="<?= $r_rate ?>"></div>
 <input id="rate" name="rate" type="hidden">
-<input type="text" name="title" placeholder=" 見出し" value="<?= $r_title ?>"/><br>
+<input type="text" name="title" class="rev-title" placeholder=" 見出し" value="<?= $r_title ?>"/><br>
 <textarea name="content" placeholder=" 本文"　rows="4" cols="40"><?= $r_content ?></textarea><br>
 <input type="hidden" name="do" value="save"/>
 <input type="submit" value="保存"/>
@@ -136,7 +128,7 @@ print "<br/><br/><a href=\"/review/?do=edit&r_id={$_GET['r_id']}\" class=\"cntbt
 </div>
 </body>
 <style>
-input[type="text"] {
+.rev-title {
 margin: 10px 0;
 }
 .rev-rate{
