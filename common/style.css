@@ -125,6 +125,7 @@ header {
 	padding: 4px 8px;
 	width: 100%;
 	background: whitesmoke;
+	-webkit-appearance: none;
 }
 .searchBox input[type="text"]:focus {
 	background: white;
@@ -589,19 +590,21 @@ input[type="submit"]:hover {
 input[type="text"], input[type="password"] {
 	border: 1px solid #ccc;
 	border-radius: 4px;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.428571429;
 	color: #555;
 	padding-left: 10px;
+	-webkit-appearance: none;
 }
 
 textarea {
 	border: 1px solid #ccc;
 	border-radius: 4px;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.428571429;
 	color: #555;
 	padding-left: 10px;
+	-webkit-appearance: none;
 }
 
 /* 選択欄 */
@@ -609,7 +612,7 @@ textarea {
 select {
 	border: 1px solid #ccc;
 	border-radius: 4px;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.428571429;
 	color: #555;
 }
