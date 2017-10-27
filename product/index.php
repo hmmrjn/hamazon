@@ -81,7 +81,9 @@ $reviews_res = $mysqli->query($reviews_sql);
 <head>
 <?php $page_title = $item['name'] . " | Hamazon";
 include "../templates/head.php"; ?>
+<link rel="stylesheet" href="simplebox.min.css">
 <link rel="stylesheet" href="stylesheet.css">
+<script src="simplebox.min.js"></script>
 </head>
 <!--
 
@@ -108,7 +110,7 @@ include "../templates/head.php"; ?>
 <div class="left-box">
 <div id="thumbnail-box">
 <div id ="thumbnail-box-inner">
-<img id="photo-opener" src="/images/product<?= $_GET['id'] ?>.jpg"><i class="fa fa-search-plus"></i></div>
+<img class="slb" src="/images/product<?= $_GET['id'] ?>.jpg"><i class="fa fa-search-plus"></i></div>
 </div>
 </div>
 <div class="main-box">
@@ -205,10 +207,6 @@ if($posts_num>$posts_by_page){
 <footer>
 <?php include '../templates/footer.php'; ?>
 </footer>
-</div>
-<div class="photo">
-<img src="../images/product<?= $_GET['id'] ?>.jpg"><br>
-<?= $item['name'] ?>
 </div>
 <script src="script.js"></script>
 <script>
