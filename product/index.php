@@ -29,11 +29,11 @@ if (isset($_POST['do']) && $_POST['do'] == "save") {
 		$esc_title   = $mysqli->real_escape_string($_POST['title']);   //SQLI対策
 		$esc_content = $mysqli->real_escape_string($_POST['content']); //SQLI対策
 		$sql = "INSERT INTO reviews (rate, title, content, item_id, user_id, date) VALUES (
-		'{$_POST['rate']}', 
-		'{$esc_title}', 
-		'{$esc_content}', 
-		'{$esc_id}', 
-		'{$_SESSION['user_id']}', 
+		'{$_POST['rate']}',
+		'{$esc_title}',
+		'{$esc_content}',
+		'{$esc_id}',
+		'{$_SESSION['user_id']}',
 		now()
 		)";
 		$mysqli->query($sql);
@@ -146,7 +146,7 @@ include "../templates/head.php"; ?>
 <?= $item['details'] ?>
 </section>
 <section>
-<h2>カスタマーレビュー (<?= $posts_num ?>件)</h2>
+<h2 id="customer-reviews-h">カスタマーレビュー (<?= $posts_num ?>件)</h2>
 <div id="rating-bars">
 <?php for($i=5; $i>=1; $i--){ ?>
 星<?= $i ?> <div class="progressbar" value="<?= $arc[$i] ?>"></div> (<?= $arc[$i] ?>)<br>
@@ -174,17 +174,17 @@ $reviews_res->free_result();
 if($posts_num>$posts_by_page){
 	?><div class="pagination"><?php
 	if ($curr_page != 1) {
-		?><a class="pagination-btn" href="?id=<?= $_GET['id'] ?>&page=<?= $curr_page - 1 ?>">prev</a><?php
+		?><a class="pagination-btn" href="?id=<?= $_GET['id'] ?>&page=<?= $curr_page - 1 ?>#customer-reviews-h">prev</a><?php
 	}
 	for ($i = 1; $i <= $pages_num; $i++) {
 		if ($i == $curr_page){
 			?><span class="pagination-btn selected"><?= $i ?></span><?php
 		} else {
-			?><a class="pagination-btn" href="?id=<?= $_GET['id'] ?>&page=<?= $i ?>"><?= $i ?></a><?php
+			?><a class="pagination-btn" href="?id=<?= $_GET['id'] ?>&page=<?= $i ?>#customer-reviews-h"><?= $i ?></a><?php
 		}
 	}
 	if ($curr_page != $pages_num) {
-		?><a class="pagination-btn" href="?id=<?= $_GET['id'] ?>&page=<?= $curr_page + 1 ?>">next</a><?php
+		?><a class="pagination-btn" href="?id=<?= $_GET['id'] ?>&page=<?= $curr_page + 1 ?>#customer-reviews-h">next</a><?php
 	}
 ?></div>
 <hr><?php
