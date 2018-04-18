@@ -8,10 +8,23 @@ $mysqli->set_charset("utf8");
 if ($mysqli->connect_error) die("データベース接続エラー");
 
 //SQL ベストセラー
-$sql_top3 ="SELECT * FROM (SELECT * FROM (SELECT item_id,SUM(quantity) AS sum FROM order_details GROUP BY item_id) aaa ORDER BY sum DESC LIMIT 0, 3) bbb INNER JOIN items ON bbb.item_id = items.id INNER JOIN (SELECT item_id, CAST(AVG(rate) AS DECIMAL(10,1)) AS avg FROM reviews GROUP BY item_id) ccc ON bbb.item_id = ccc.item_id ORDER BY sum DESC";
+$sql_top3 ="
+SELECT items.id, items.name, items.price, item_scores.score
+FROM (SELECT item_id, SUM(quantity) AS units_sold FROM order_details GROUP BY item_id LIMIT 0, 3) sales
+INNER JOIN items
+ON sales.item_id = items.id
+INNER JOIN (SELECT item_id, CAST(AVG(rate) AS DECIMAL(10,1)) AS score FROM reviews GROUP BY item_id) item_scores
+ON sales.item_id = item_scores.item_id
+ORDER BY units_sold DESC
+";
 
 //SQL 評価が高い商品
-$sql_best3 = "SELECT avg, id, name, price FROM (SELECT item_id, CAST(AVG(rate) AS DECIMAL(10,1)) AS avg FROM reviews GROUP BY item_id) aaa INNER JOIN items ON aaa.item_id = items.id ORDER BY avg DESC LIMIT 0, 3";
+$sql_best3 = "
+SELECT items.id, items.name, items.price, item_scores.score
+FROM (SELECT item_id, CAST(AVG(rate) AS DECIMAL(10,1)) AS score FROM reviews GROUP BY item_id LIMIT 0, 3) item_scores
+INNER JOIN items ON item_scores.item_id = items.id
+ORDER BY score DESC
+";
 
 //SQL 新着商品
 $sql_new3 = "SELECT date, id, name, price FROM items ORDER BY date DESC LIMIT 0, 3";
@@ -70,7 +83,7 @@ $price =  number_format( $item['price'] );
 <?= $item_index ?>. <a href="product/?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
 </div>
 <div class="item-rate">
-<span class="rev-rate" value="<?= $item['avg'] ?>"></span> (<?= $item['avg'] ?>)
+<span class="rev-rate" value="<?= $item['score'] ?>"></span> (<?= $item['score'] ?>)
 </div>
 <div class="item-price">
 <font color="darkred">&yen;<?= $price ?></font>
@@ -100,7 +113,7 @@ $price =  number_format( $item['price'] );
 <?= $item_index ?>. <a href="product/?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
 </div>
 <div class="item-rate">
-<span class="rev-rate" value="<?= $item['avg'] ?>"></span> (<?= $item['avg'] ?>)
+<span class="rev-rate" value="<?= $item['score'] ?>"></span> (<?= $item['score'] ?>)
 </div>
 <div class="item-price">
 <font color="darkred">&yen;<?= $price ?></font>
